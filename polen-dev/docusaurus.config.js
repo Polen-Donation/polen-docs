@@ -2,12 +2,12 @@ module.exports = {
   title: 'My Site',
   tagline: 'The tagline of my site',
   url: 'https://Polen-Donation.github.io',
-  baseUrl: '/',
+  baseUrl: '/polen-docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'Polen-Donation', // Usually your GitHub org/user name.
-  projectName: 'polen.github.io', // Usually your repo name.
+  projectName: 'polen-docs', // Usually your repo name.
   themeConfig: {
     hideableSidebar: true,
     navbar: {
