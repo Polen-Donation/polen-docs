@@ -62,7 +62,7 @@ Este método retorna as causas apoiadas por uma loja.
     - `page`: (opcional) número de uma página especifica - `number`.
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`. 
     - `storeId`: (obrigatório) identificador da loja - `string`.
-    _ `userId`: (opcional) filtra por instituições que o consumidor já apoiou - `string`.
+    - `userId`: (opcional) filtra por instituições que o consumidor já apoiou - `string`.
     - `city`: (opcional) filtra por cidade - `string`.
     - `state`: (opcinal) filtra por estado - `string`.
     - `onlySelected`: (opcional) filtra por instituições selecionadas pelo usuário - `boolean`.
