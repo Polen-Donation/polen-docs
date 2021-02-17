@@ -3,6 +3,11 @@ id: cause
 title: Cause
 ---
 
+:::important IMPORTANTE
+
+Para mais detalhes sobre os dados de entrada e saída consulte a documentação da API.
+:::
+
 ## Get All Causes
 Este método retorna todas as instituições cadastradas no Polen.
 

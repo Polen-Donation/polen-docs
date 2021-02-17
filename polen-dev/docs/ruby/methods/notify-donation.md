@@ -156,33 +156,32 @@ params = {
 }
 
 payload = {
-    :orderId=>"", 
-    :donation=>-100000000, 
-    :userDonation=>-100000000, 
-    :userId=>"", 
-    :tags=>[""], 
-    :storeName=>"", 
-    :storeUrl=>"", 
-    :currency=>"", 
-    :purchase=>-100000000, 
-    :ngoId=>"", 
-    :userEmail=>"", 
-    :userPhone=>"", 
-    :userDocument=>"", 
-    :userGender=>"", 
-    :userBirthDate=>"", 
-    :userName=>"", 
-    :city=>"", 
-    :state=>"", 
-    :country=>"", 
-    :paymentMethod=>"", 
-    :notes=>"", 
-    :status=>0, 
-    :createAt=>"2021-02-12T12:49:25.513Z", 
-    :test=>false
+    orderId: "", 
+    donation: -100000000, 
+    userDonation: -100000000, 
+    userId: "", 
+    tags: [""], 
+    storeName: "", 
+    storeUrl: "", 
+    currency: "", 
+    purchase: -100000000, 
+    ngoId: "", 
+    userEmail: "", 
+    userPhone: "", 
+    userDocument: "", 
+    userGender: "", 
+    userBirthDate: "", 
+    userName: "", 
+    city: "", 
+    state: "", 
+    country: "", 
+    paymentMethod: "", 
+    notes: "", 
+    status: 0, 
+    createAt: "2021-02-12T12:49:25.513Z", 
+    test: false
 }
 
-
-create = polen.update_notify_donation(params)
+create = polen.update_notify_donation(params, payload)
 puts create.body
 ```
