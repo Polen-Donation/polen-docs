@@ -3,7 +3,13 @@ id: notify-donation
 title: Donation Notify
 ---
 
+:::important IMPORTANTE
+
+Para mais detalhes sobre os dados de entrada e saída consulte a documentação da API.
+:::
+
 ## Get Notify Donation
+
 Traz os detalhes de uma doações específica a partir de seu Id.
 
 - Recebe o argumento `params` que é um hash com os campos:
