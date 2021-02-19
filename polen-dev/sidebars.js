@@ -10,7 +10,8 @@ module.exports = {
           "ruby/methods/finance",
           "ruby/methods/platform",
           "ruby/methods/store",
-          "ruby/methods/trasaction"
+          "ruby/methods/transaction",
+          "ruby/methods/transparency"
       ]
     }]
   },

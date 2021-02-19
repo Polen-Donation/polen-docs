@@ -7,8 +7,8 @@ title: Transaction
 Para mais detalhes sobre os dados de entrada e saída consulte a documentação da API.
 :::
 
-## Update Store
-Este método atualiza dados de uma empresa.
+## Update Status
+Este método deve ser utilizado para atualizações posteriores à compra.
 
 - Recebe o argumento `params` que é um hash com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
