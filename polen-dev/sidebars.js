@@ -8,7 +8,9 @@ module.exports = {
           "ruby/methods/notify-donation",
           "ruby/methods/company",
           "ruby/methods/finance",
-          "ruby/methods/platform"
+          "ruby/methods/platform",
+          "ruby/methods/store",
+          "ruby/methods/trasaction"
       ]
     }]
   },
