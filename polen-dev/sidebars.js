@@ -11,7 +11,8 @@ module.exports = {
           "ruby/methods/platform",
           "ruby/methods/store",
           "ruby/methods/transaction",
-          "ruby/methods/transparency"
+          "ruby/methods/transparency",
+          "ruby/methods/user"
       ]
     }]
   },
