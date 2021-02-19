@@ -59,10 +59,10 @@ Este método atualiza dados de uma empresa.
     
 -Recebe o argumento `payload` que é um hash com os campos:
     - `document`: (obrigatório) documento de identificaçao (CNPJ/CPF) - `string`.
-    - `name`: nome da empresa - `string`.
-    - `logo`: url da logo da empresa -  `string`.
-    - `url`: url da página de impacto da empresa - `string`.
-    - `segment`: segmento da empresa - `string`.
+    - `name`:(obrigatório) nome da empresa - `string`.
+    - `logo`: (opcional) url da logo da empresa -  `string`.
+    - `url`: (opcional) url da página de impacto da empresa - `string`.
+    - `segment`: (opcional) segmento da empresa - `string`.
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
         - id: `string`.
@@ -75,12 +75,10 @@ Este método atualiza dados de uma empresa.
 
 ```ruby
 params = {
-  page: 20,
-  pageSize: 50
+  companyId: ""
 }
 
 payload = {
-{
   document: "",
   name: "",
   logo: "",
@@ -115,7 +113,6 @@ Este método cria uma empresa.
 ```ruby
 
 payload = {
-{
   document: "",
   name: "",
   logo: "",
