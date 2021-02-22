@@ -14,26 +14,26 @@ Este método deve ser utilizado para atualizações posteriores à compra.
     - `storeId`: (obrigatório) id da loja - `string`.
     - `orderId`: (obrigatório) id da doação - `string`.
     - `status`: (obrigatório) status da doação - `number`.
-    
+
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-      - transactionId: `string`.
-      - storeId: `string`.
-      - storeUrl: `string`.
-      - orderId: `string`.
-      - donation: `number`.
-      - userDonation: `number`.
-      - purchase number
-      - ngoId string
-      - ngoName string
-      - userId string
-      - polenUserId string
-      - userEmail string
-      - status string
-      - tags array
-      - createAt string
+        - transactionId: `string`.
+        - storeId: `string`.
+        - storeUrl: `string`.
+        - orderId: `string`.
+        - donation: `number`.
+        - userDonation: `number`.
+        - purchase number
+        - ngoId string
+        - ngoName string
+        - userId string
+        - polenUserId string
+        - userEmail string
+        - status string
+        - tags array
+        - createAt string
 
-      - `code`: status da requisição.
+        - `code`: status da requisição.
 
 ```ruby
 params = {

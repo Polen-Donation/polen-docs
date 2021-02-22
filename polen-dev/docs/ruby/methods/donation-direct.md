@@ -14,7 +14,7 @@ Este método cria uma doação direta.
 - Recebe o argumento `payload` que é um hash com os campos:
     - `storeId`: (obrigatório) id da empresa - `string`.
     - `paymentMethod`: (obrigatório) forma de pagamento - `number`.
-    - `donor`: (obrigatório) dados do doador - `hash`. 
+    - `donor`: (obrigatório) dados do doador - `hash`.
     - `creditCardData`: (obrigatório para pagamento c/ cartão de crédito) dados do cartão de crédito - `hash`.
     - `bankSlipData`: (obrigatório para pagamento c/ boleto) dados para gerar boleto - `hash`.
     - `address`: (opcinal) endereço do doador - `hash`.

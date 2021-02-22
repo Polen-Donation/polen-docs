@@ -51,18 +51,18 @@ stores = polen.get_company_stores(params)
 puts stores.body
 ```
 
-## Update Company 
+## Update Company
 Este método atualiza dados de uma empresa.
 
 - Recebe o argumento `params` que é um hash com os campos:
     - `companyId`: (obrigatório) id da empresa - `string`.
-    
+
 -Recebe o argumento `payload` que é um hash com os campos:
-    - `document`: (obrigatório) documento de identificaçao (CNPJ/CPF) - `string`.
-    - `name`:(obrigatório) nome da empresa - `string`.
-    - `logo`: (opcional) url da logo da empresa -  `string`.
-    - `url`: (opcional) url da página de impacto da empresa - `string`.
-    - `segment`: (opcional) segmento da empresa - `string`.
+- `document`: (obrigatório) documento de identificaçao (CNPJ/CPF) - `string`.
+- `name`:(obrigatório) nome da empresa - `string`.
+- `logo`: (opcional) url da logo da empresa -  `string`.
+- `url`: (opcional) url da página de impacto da empresa - `string`.
+- `segment`: (opcional) segmento da empresa - `string`.
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
         - id: `string`.
@@ -99,7 +99,7 @@ Este método cria uma empresa.
 - `logo`: url da logo da empresa -  `string`.
 - `url`: url da página de impacto da empresa - `string`.
 - `segment`: segmento da empresa - `string`.
-  
+
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
         - id: `string`.
@@ -123,4 +123,3 @@ payload = {
 create = polen.create_company(payload)
 puts crate.body
 ```
-

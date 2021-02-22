@@ -12,16 +12,16 @@ Para mais detalhes sobre os dados de entrada e saída consulte a documentação 
 Este método retorna todas as instituições cadastradas no Polen.
 
 - Recebe o argumento `params` que é um hash com os campos:
-  - `page`: (opcional) número de uma página especifica - `number`.
-  - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 100) - `number`.
+    - `page`: (opcional) número de uma página especifica - `number`.
+    - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 100) - `number`.
 
 - Retorna um objeto com os métodos:
-  - `body`: conteúdo da resposta.
-       - results: `[]`.
-       - pageNumber: `number`.
-       - nextPage: `string`.   
-  - `code`: status da requisição.
-    
+    - `body`: conteúdo da resposta.
+        - results: `[]`.
+        - pageNumber: `number`.
+        - nextPage: `string`.
+    - `code`: status da requisição.
+
 ```ruby
 params = {
   page: 20,
@@ -60,7 +60,7 @@ Este método retorna as causas apoiadas por uma loja.
 
 - Recebe o argumento `params` que é um hash com os campos:
     - `page`: (opcional) número de uma página especifica - `number`.
-    - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`. 
+    - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
     - `storeId`: (obrigatório) identificador da loja - `string`.
     - `userId`: (opcional) filtra por instituições que o consumidor já apoiou - `string`.
     - `city`: (opcional) filtra por cidade - `string`.

@@ -24,7 +24,7 @@ Não é recomendado a instalação de gems como super usuário.
 :::
 
 ## Como usar
-Após a instalação você pode fazer a importação para o seu projeto através do `require` e fazer uma instância da classe `PolenAPI` passando um token de acesso. Esse token pode ser encontrado no [painel do polinizdor](https://www.painel.opolen.com.br//).
+Após a instalação você pode fazer a importação para o seu projeto através do `require` e fazer uma instância da classe `PolenAPI` passando um token de acesso. Esse token pode ser encontrado no [painel do polinizdor](https://painel.opolen.com.br/).
 
 
 ```ruby

@@ -4,15 +4,16 @@ module.exports = {
     Features: ['mdx'],
     Ruby: ["ruby/ruby-install", {
       "Métodos":[
-          "ruby/methods/cause",
-          "ruby/methods/notify-donation",
-          "ruby/methods/company",
-          "ruby/methods/finance",
-          "ruby/methods/platform",
-          "ruby/methods/store",
-          "ruby/methods/transaction",
-          "ruby/methods/transparency",
-          "ruby/methods/user"
+        "ruby/methods/cause",
+        "ruby/methods/company",
+        "ruby/methods/donation-direct",
+        "ruby/methods/finance",
+        "ruby/methods/notify-donation",
+        "ruby/methods/platform",
+        "ruby/methods/store",
+        "ruby/methods/transaction",
+        "ruby/methods/transparency",
+        "ruby/methods/user"
       ]
     }]
   },

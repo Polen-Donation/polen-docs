@@ -1,6 +1,11 @@
+const YAML = require('yaml');
+const fs = require('fs');
+const path = require('path');
+const spec = fs.readFileSync('./polen.yaml', 'utf-8');
+
 module.exports = {
   title: 'Polen',
-  tagline: 'The tagline of my site',
+  tagline: 'A sua API para doações',
   url: 'https://Polen-Donation.github.io',
   baseUrl: '/polen-docs/',
   onBrokenLinks: 'throw',
@@ -10,10 +15,22 @@ module.exports = {
   projectName: 'polen-docs', // Usually your repo name.
   themeConfig: {
     hideableSidebar: true,
+    algolia: {
+      apiKey: 'YOUR_API_KEY',
+      indexName: 'YOUR_INDEX_NAME',
+
+      // Optional: see doc section bellow
+      contextualSearch: true,
+
+      // Optional: Algolia search parameters
+      searchParameters: {},
+
+      //... other Algolia params
+    },
     navbar: {
-      title: 'My Site',
+      title: 'Polen',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Logo do Polen',
         src: 'img/logo.svg',
       },
       items: [
@@ -23,9 +40,18 @@ module.exports = {
           label: 'Docs',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          to: 'api-reference',
+          label: 'API',
+          position: 'left'
+        },
+        {
+          href: 'https://polen.com.br/',
+          label: 'Nosso Site',
+          position: 'right'
+        },
+        {
+          href: 'https://github.com/Polen-Donation',
           label: 'GitHub',
           position: 'right',
         },
@@ -78,7 +104,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Polen.`,
     },
   },
   presets: [
@@ -103,4 +129,8 @@ module.exports = {
       },
     ],
   ],
+  customFields: {
+    apiSpec: YAML.parse(spec)
+  },
+  plugins: [path.resolve(__dirname, 'redoc-plugin')],
 };

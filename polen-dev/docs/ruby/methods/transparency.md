@@ -15,12 +15,12 @@ Este método retorna um consolidado do total já doado por sua empresa e o impac
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-      - storeId: `string`
-      - name: `string`
-      - logo: `string`
-      - ngos: `array`
-      - totalRaised: `number`
-      - totalPurchases: `number`  
+        - storeId: `string`
+        - name: `string`
+        - logo: `string`
+        - ngos: `array`
+        - totalRaised: `number`
+        - totalPurchases: `number`
     - `code`: status da requisição.
 
 ```ruby
@@ -41,16 +41,16 @@ Este método retorna os detalhes de um conteúdo específico postado pela instit
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-      - id: `string`.
-      - causeId: `string`.
-      - title: `string`.
-      - description: `string`.
-      - contents: `array`.
-      - approved: `boolean`.
-      - type: `number`.
-      - date: `string`.
-      - dateOfImpact: `string`.
-      - dateApproved: `string`.
+        - id: `string`.
+        - causeId: `string`.
+        - title: `string`.
+        - description: `string`.
+        - contents: `array`.
+        - approved: `boolean`.
+        - type: `number`.
+        - date: `string`.
+        - dateOfImpact: `string`.
+        - dateApproved: `string`.
     - `code`: status da requisição.
 
 ```ruby
@@ -79,7 +79,7 @@ Este método retorna todos os recibos de doação assinados pelas instituições
         - results: `array`.
         - pageNumber: `number`.
         - nextPage: `string`.
-      - `code`: status da requisição.
+        - `code`: status da requisição.
 
 ```ruby
 params = {

@@ -8,32 +8,30 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: 'Easy to Use',
+    title: 'Facil de usar',
     imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Nossa API foi projeteda para que qualquer usuário possa usa-la de maneira simples e intuitiva.
+        Seja você junior ou sênior, nossa API vai te atender você.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Concentre-se no que é importante',
     imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        A API do polen permite que você foque em fazer e não em como fazer, nós cuidamos disso para você com funções e métodos prontos feitos para varias liguagens de programação diferentes.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Sua biblioteca esta aqui',
     imageUrl: 'img/undraw_docusaurus_react.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        A biblioteca para sua linguagem de programação esta aqui. Temos bibliotecas construídas para node, ruby e python. Consulte a nossa documentação e saiba mais.
       </>
     ),
   },
@@ -42,14 +40,16 @@ const features = [
 function Feature({imageUrl, title, description}) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={clsx('col col--4', styles.feature)}>
+    <div className={styles.containerFeature}>
       {imgUrl && (
-        <div className="text--center">
+        <div className={styles.imageFeatureContainer}>
           <img className={styles.featureImage} src={imgUrl} alt={title} />
         </div>
       )}
-      <h3>{title}</h3>
-      <p>{description}</p>
+      <div className={styles.textFeatureContainer}>
+          <h3>{title}</h3>
+          <p>{description}</p>
+      </div>
     </div>
   );
 }
@@ -59,7 +59,7 @@ function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
@@ -72,7 +72,7 @@ function Home() {
                 styles.getStarted,
               )}
               to={useBaseUrl('docs/')}>
-              Get Started
+              Vamos Começar
             </Link>
           </div>
         </div>
@@ -81,7 +81,7 @@ function Home() {
         {features && features.length > 0 && (
           <section className={styles.features}>
             <div className="container">
-              <div className="row">
+              <div className="column">
                 {features.map((props, idx) => (
                   <Feature key={idx} {...props} />
                 ))}

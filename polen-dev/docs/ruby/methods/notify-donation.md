@@ -13,7 +13,7 @@ Para mais detalhes sobre os dados de entrada e saída consulte a documentação 
 Traz os detalhes de uma doações específica a partir de seu Id.
 
 - Recebe o argumento `params` que é um hash com os campos:
-    - `storeId`: (obrigatório) identificador da loja - `string`. 
+    - `storeId`: (obrigatório) identificador da loja - `string`.
     - `polenTransactionId`: (opcional) Id da transacao do Polen - `string`.
     - `orderId`: (opcional) id para identificar esta transação- `string`.
 
@@ -73,12 +73,12 @@ Neste método atualizamos o status da doação.
 
 - Recebe o argumento `params` que é um hash com os campos:
     - `storeId`: (obrigatório) identificador da loja - `string`.
-    
+
 - Recebe o argumento `payload` que é um hash com os campos:
     - `polenTransactionId`: (opcional) id da transição do Polen - `string`.
     - `orderId`: (opcional) id da passado na criação da doação - `string`.
     - `status`: (obrigatório) status da doação - `number`.
-    
+
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
         - transactionId: `string`.

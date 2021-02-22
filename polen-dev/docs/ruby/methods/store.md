@@ -74,43 +74,43 @@ Este método atualiza dados de uma empresa.
     - `storeId`: (obrigatório) id da loja - `string`.
 
 -Recebe o argumento `payload` que é um hash com os campos:
-    - `causeList`: (opcional) lista de causas apoiadas - `string`.
-    - `storeName`: (opcional) nome da loja - `string`.
-    - `email`: (opcional) email do usuário - `string`.
-    - `name`: (opcional) nome do usuário - `string`.
-    - `domain`: (opcional) url da loja -  `string`.
-    - `phone`: (opcional) telefone da loja - `string`.
-    - `logo`: (opcional) logo da loja - `string`.
-    - `address`: (opcional) endereço da loja - `string`
-    - `segment`: (opcional) segmento da empresa - `string`.
-    - `city`: (opcional) cidade da loja - `string`.
-    - `state`: (opcional) estado onde se encotra a loja - `string`.
-    - `zipcode`: (opcional) CEP da loja - `string`.
-    - `document`: (opcional) documento de identificação - `string`.
-    - `nameContact`: (opcional) nome do responsável pela loja - `string`.
-    - `tags`: (opcional) novos id's - `array`.
-    - `test`: (opcional) usado para contabilizarmos as doações feitas nesta loja - `boolean`.
-    - `active`: (opcional) usado para ativar a loja - `boolean`.
-    - `platformId`: (opcional) id da plataforma - `string`.
+- `causeList`: (opcional) lista de causas apoiadas - `string`.
+- `storeName`: (opcional) nome da loja - `string`.
+- `email`: (opcional) email do usuário - `string`.
+- `name`: (opcional) nome do usuário - `string`.
+- `domain`: (opcional) url da loja -  `string`.
+- `phone`: (opcional) telefone da loja - `string`.
+- `logo`: (opcional) logo da loja - `string`.
+- `address`: (opcional) endereço da loja - `string`
+- `segment`: (opcional) segmento da empresa - `string`.
+- `city`: (opcional) cidade da loja - `string`.
+- `state`: (opcional) estado onde se encotra a loja - `string`.
+- `zipcode`: (opcional) CEP da loja - `string`.
+- `document`: (opcional) documento de identificação - `string`.
+- `nameContact`: (opcional) nome do responsável pela loja - `string`.
+- `tags`: (opcional) novos id's - `array`.
+- `test`: (opcional) usado para contabilizarmos as doações feitas nesta loja - `boolean`.
+- `active`: (opcional) usado para ativar a loja - `boolean`.
+- `platformId`: (opcional) id da plataforma - `string`.
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-      - apiKey: `string`.
-      - apiToken: `string`.
-      - storeId: `string`.
-      - storeUrl: `string`.
-      - childStoreId: `array`.
-      - email: `string`. 
-      - name: `string`.
-      - logo: `string`.
-      - phone: `string`.
-      - domain: `string`.
-      - document: `string`.
-      - causesList: `array`.
-      - active: `boolean`.
-      - test: `boolean`.
-      - totalDonated: `number`.
-      - totalBackers: `number`.
-      - errorCode: `number`.
+        - apiKey: `string`.
+        - apiToken: `string`.
+        - storeId: `string`.
+        - storeUrl: `string`.
+        - childStoreId: `array`.
+        - email: `string`.
+        - name: `string`.
+        - logo: `string`.
+        - phone: `string`.
+        - domain: `string`.
+        - document: `string`.
+        - causesList: `array`.
+        - active: `boolean`.
+        - test: `boolean`.
+        - totalDonated: `number`.
+        - totalBackers: `number`.
+        - errorCode: `number`.
     - `code`: status da requisição.
 
 ```ruby
@@ -150,7 +150,7 @@ Este método adiciona causas a uma loja.
     - `storeId`: (obrigatório) id da loja - `string`.
 
 -Recebe o argumento `payload` que é um hash com os campos:
-    - `Array de string`: lista de ids das Causas ou Instituicoes que serao apoiadas - `array`.
+- `Array de string`: lista de ids das Causas ou Instituicoes que serao apoiadas - `array`.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
@@ -179,26 +179,26 @@ Este método cria uma nova loja.
     - `companyId`: (obrigatório) id da empresa - `string`.
 
 -Recebe o argumento `payload` que é um hash com os campos:
-    - `storeName`: (opcional) nome da loja - `string`.
-    - `causesList`: (opcional) lista de causa apoiadas - `array`.
-    - `storeUrl`: (opcional) url da loja - `string`.
-    - `email`: (opcional) email do usuário - `string`.
-    - `name`: (opcional) nome do usuário - `string`.
-    - `domain`: (opcional) url da loja -  `string`.
-    - `phone`: (opcional) telefone da loja - `string`.
-    - `logo`: (opcional) logo da loja - `string`.
-    - `address`: (opcional) endereço da loja - `string`
-    - `segment`: (opcional) segmento da empresa - `string`.
-    - `city`: (opcional) cidade da loja - `string`.
-    - `state`: (opcional) estado onde se encotra a loja - `string`.
-    - `zipcode`: (opcional) CEP da loja - `string`.
-    - `document`: (opcional) documento de identificação - `string`.
-    - `nameContact`: (opcional) nome do responsável pela loja - `string`.
-    - `tags`: (opcional) novos id's - `array`.
-    - `test`: (opcional) usado para contabilizarmos as doações feitas nesta loja - `boolean`.
-    - `active`: (opcional) usado para ativar a loja - `boolean`.
-    - `platformId`: (opcional) id da plataforma - `string`.
-  
+- `storeName`: (opcional) nome da loja - `string`.
+- `causesList`: (opcional) lista de causa apoiadas - `array`.
+- `storeUrl`: (opcional) url da loja - `string`.
+- `email`: (opcional) email do usuário - `string`.
+- `name`: (opcional) nome do usuário - `string`.
+- `domain`: (opcional) url da loja -  `string`.
+- `phone`: (opcional) telefone da loja - `string`.
+- `logo`: (opcional) logo da loja - `string`.
+- `address`: (opcional) endereço da loja - `string`
+- `segment`: (opcional) segmento da empresa - `string`.
+- `city`: (opcional) cidade da loja - `string`.
+- `state`: (opcional) estado onde se encotra a loja - `string`.
+- `zipcode`: (opcional) CEP da loja - `string`.
+- `document`: (opcional) documento de identificação - `string`.
+- `nameContact`: (opcional) nome do responsável pela loja - `string`.
+- `tags`: (opcional) novos id's - `array`.
+- `test`: (opcional) usado para contabilizarmos as doações feitas nesta loja - `boolean`.
+- `active`: (opcional) usado para ativar a loja - `boolean`.
+- `platformId`: (opcional) id da plataforma - `string`.
+
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
         - apiKey: `string`.
@@ -261,23 +261,23 @@ Este método remove causas de uma loja.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-      - apiKey: `string`.
-      - apiToken: `string`.
-      - storeId: `string`.
-      - storeUrl: `string`.
-      - childStoreId: `array`.
-      - email: `string`.
-      - name: `string`.
-      - logo: `string`.
-      - phone: `string`.
-      - domain: `string`.
-      - document: `string`.
-      - causesList: `array`.
-      - active: `boolean`.
-      - test: `boolean`.
-      - totalDonated: `number`
-      - totalBackers: `number`
-      - errorCode: `number`
+        - apiKey: `string`.
+        - apiToken: `string`.
+        - storeId: `string`.
+        - storeUrl: `string`.
+        - childStoreId: `array`.
+        - email: `string`.
+        - name: `string`.
+        - logo: `string`.
+        - phone: `string`.
+        - domain: `string`.
+        - document: `string`.
+        - causesList: `array`.
+        - active: `boolean`.
+        - test: `boolean`.
+        - totalDonated: `number`
+        - totalBackers: `number`
+        - errorCode: `number`
 
     - `code`: status da requisição.
 

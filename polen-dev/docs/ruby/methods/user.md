@@ -16,12 +16,12 @@ Este método retorna detalhes de um usuário específico.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-      - identifier: `string`.
-      - email: `string`.
-      - name: `string`.
-      - phone: `string`.
-      - document: `string`.
-      - causesList: `array`.
+        - identifier: `string`.
+        - email: `string`.
+        - name: `string`.
+        - phone: `string`.
+        - document: `string`.
+        - causesList: `array`.
     - `code`: status da requisição.
 
 ```ruby
@@ -43,9 +43,9 @@ Este método deleta um usuário específico.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-      - success: `boolean`.
-      - errorCode: `number`.
-      - error: `string`.
+        - success: `boolean`.
+        - errorCode: `number`.
+        - error: `string`.
     - `code`: status da requisição.
 
 ```ruby
@@ -105,12 +105,12 @@ Este método atualiza dados de um usuário.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-      - identifier: `string`.
-      - email: `string`.
-      - name: `string`.
-      - phone: `string`.
-      - document: `string`.
-      - causesList: `array`.
+        - identifier: `string`.
+        - email: `string`.
+        - name: `string`.
+        - phone: `string`.
+        - document: `string`.
+        - causesList: `array`.
     - `code`: status da requisição.
 
 ```ruby

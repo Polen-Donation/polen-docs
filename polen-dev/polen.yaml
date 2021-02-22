@@ -1,0 +1,2838 @@
+swagger: '2.0'
+info:
+  version: v2
+  title: Polen API
+  description: >-
+    A API do Polen existe para simplificar e automatizar toda sua gestão de
+    responsabilidade social. <br/>          A partir desta API você tem acesso a
+    instituições que passaram por uma avaliação e curadoria para estarem
+    habilitadas a captar recursos.<br/> 
+    De maneira simples é possível adicionar uma doação em suas transações e todo o trabalho financeiro, fiscal, legal e de transparência sobre o bom uso deste recurso nós cuidamos pra você.
+    <br/><br/>**Entendendo melhor**:
+    <br/>   Veja o vídeo onde explicamos melhor como os módulos do Polen funcionam e mostramos utilizando as chamadas via postman na prática como utilizar a API.<br/>
+    <br/>   Overview da API: https://youtu.be/rQKPUCEMTVc<br/>
+    Na prática: https://youtu.be/HD4xokxWFVY<br/>
+    Na prática API v2: https://www.loom.com/share/04f81bf844914200a4490779cd93ef83<br/>
+    
+    Collection do Postman: <a href="https://static.opolen.com.br/docs/dev/polenapi/polen-api-v2-10082020.json">postman</a> (importe esta collection para o seu postman)<br/><br/>**Autenticação**:
+    Para acessar os métodos desta API você precisa ter uma conta no Polen. Para
+    isso você pode entrar em bemvindo.opolen.com.br ou entre em
+    contato.<br/>          Tendo sua conta no Polen, acesse seu painel em
+    painel.opolen.com.br e no menu 'Setup' você irá encontrar a chave de
+    API (`api_token`). Está é a chave que você passará em toda requisição para a
+    API do Polen.<br/>
+    É obrigatório também passar o `storeId` na sua requisição. O StoreId é o Id de qual loja está fazendo a doação. Uma conta pode ter N lojas. No seu painel administrativo do Polen você pode criar e consultar suas lojas.<br/>
+    Para criar uma nova Store, você também precisará do `companyId`. Ao rodar o GET /api/v2/company/list apenas passando o `api_token`. <br/><br/>                   **Paginação**: Todas as listas que
+    o Polen retorna são paginadas. Por padrão sempre retornará 20 itens nesta
+    lista e você pode configurar para até 100 itens por página. <br/><br/>
+    Qualquer dúvida entre em contato com fernando@opolen.com.br
+host: 'api.polen.com.br'
+schemes:
+  - https
+paths:
+  '/api/v{version}/cause/all':
+    get:
+      tags:
+        - Cause
+      summary: Lista de Instituições do Polen
+      description: "É a partir deste método que você traz a lista de todas as instituições cadastradas pelo Polen.\r\nImportante dizer: Apenas as Ongs que passaram se cadastraram e foram aprovadas para doação direta via API aparecem nesta listagem."
+      operationId: Cause_All
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 100
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Instituições do Polen
+          schema:
+            $ref: '#/definitions/V1ResponseGetCauses'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/cause/categories':
+    get:
+      tags:
+        - Cause
+      summary: Lista de Categorias de Causas do Polen
+      description: "É a partir deste método que você traz todas as categorias de instituicoes que existe no Polen. Ex.: \"Educaçao, Saúde, Combate à Fome\"\r\nVocê pode usar para exibir esta lista para filtrar as instituicoes por exemplo.\r\n       \r\nRetorna uma lista de categorias de causas com as seguintes infos:\r\n* **Id** O id da categoria.\r\n* **Name** Nome da categoria.\r\n* **Logo** Icone utilizado pelo Polen para demonstrar a categoria.\r\n* **Active** O status desta categoria."
+      operationId: Cause_GetCategories
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Categorias das Causas
+          schema:
+            $ref: '#/definitions/V1ResponseGetCauses'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/cause':
+    get:
+      tags:
+        - Cause
+      summary: Lista de Instituições da Loja.
+      description: "É a partir deste método que você traz a lista de instituições apoiadas pela sua loja.\r\nVocê pode usar para exibir para seu usuário está lista para que ele escolha qual das instituiçoes quer apoiar\r\nOpcionalmente você pode filtrar por:\r\n* **storeId** (obrigatório) é o identificador da loja. ex.: um cnpj ou nome sem espaço e sem caracteres especiais.\r\n* instituições que o **consumidor** já apoiou\r\n* **userId** (opcional) O id do consumidor que cadastrou em uma doação. Ao passar o userId, retornamos também se a instituiçao está selecionada pelo usuário.\r\n* **cidade**, **estado** e **país**.  \r\n* **onlySelected** Retorna apenas as instituiçoes que o usuário apoia. Nesse caso, o campo **userId** é obrigatório.\r\n\r\nobs.: Essa ligaçao entre instituiçao e usuário é feito a partir de uma doaçao cadastrada. Caso nao tenha doaçao feita, nao é armazenado a Ong apoiada pelo usuário\r\n\r\nRetorna uma lista de instituiçoes com as seguintes infos:\r\n* **NgoId** O id da instituiçao.\r\n* **NgoName** Nome da instituiçao.\r\n* **NgoLogo** Logo da instituiçao.\r\n* **Categories** = ong.Categories?.Where(x =&gt; x.IsSelected).Select(x =&gt; new GenericIdNamePairDto { Name = x.Name, Id = x.Id }).ToList(),\r\n* **City** A cidade desta instituição\r\n* **State** O estado desta instituição\r\n* **Country** O país desta instituição\r\n* **Description** Descrição curta da instituição\r\n* **TotalDonated** O valor total que a empresa ja doou para esta instituição\r\n* **TotalBackers** O numero de usuários que através desta empresa fez uma doacao para esta instituição\r\n* **Active** O status da instituiçao. Geralmente estará *false* caso tenha algum problema na atualizaçao cadastral ou de transparência. Recomendamos exibir apenas instituiçoes ativas e exibir as falsas apenas se o usuário já escolheu ela.\r\n* **UserSelected** Se você passou o userId de um usuário seu, esse campo exibe se ele já apoia uma instituiçao. Desta maneira você pode mostrar em destaque ela."
+      operationId: Cause_Get
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O identificador da loja (Guid)
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: (opcional) filtrar por instituições que o consumidor já apoiou
+          required: false
+          type: string
+        - name: city
+          in: query
+          description: (opcional) filtrar pela cidade
+          required: false
+          type: string
+        - name: state
+          in: query
+          description: (opcional) filtrar por estado
+          required: false
+          type: string
+        - name: country
+          in: query
+          description: (opcional) filtrar por país
+          required: false
+          type: string
+        - name: onlySelected
+          in: query
+          description: >-
+            (opcional) filtrar para exibir apenas instituiçoes selecionadas pelo
+            usuário.
+          required: false
+          type: boolean
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Instituições apoiadas pela Store
+          schema:
+            $ref: '#/definitions/V1ResponseGetCauses'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/company/detail':
+    get:
+      tags:
+        - Company
+      summary: Detalhes da Empresa
+      description: "Traz os detalhes de uma empresa específica.\r\n\r\nRetorna uma lista da empresa:\r\n* **id** O id da empresa.\r\n* **name** (obrigatório) Nome da empresa.\r\n* **document** (obrigatório) Documento de identificaçao (CNPJ/CPF)       \r\n* **url**"
+      operationId: Company_Get
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: companyId
+          in: query
+          description: Id da Empresa (Guid)
+          required: true
+          type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Company
+          schema:
+            $ref: '#/definitions/V2ResponseCompanyDto'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/company/list':
+    get:
+      tags:
+        - Company
+      summary: Lista de Empresas que seu usuário tem acesso.
+      description: "Traz todas as empresas da sua conta detectada a partir do api_token\r\n       \r\nRetorna uma lista da empresa:\r\n* **id** O id da empresa.\r\n* **name** (obrigatório) Nome da empresa.\r\n* **document** (obrigatório) Documento de identificaçao (CNPJ/CPF)       \r\n* **url**"
+      operationId: Company_GetCompanies
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Lojas
+          schema:
+            $ref: '#/definitions/V2ResponseCompanyDto'
+        '400':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/BadRequestResult'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+  '/api/v{version}/company/stores':
+    get:
+      tags:
+        - Company
+      summary: Lista de Lojas da Empresa
+      description: "Traz todas as lojas da empresa\r\n       \r\nRetorna uma lista de categorias de causas com as seguintes infos:\r\n* **Id** O id da categoria.\r\n* **Name** Nome da categoria.\r\n* **Logo** Icone utilizado pelo Polen para demonstrar a categoria.\r\n* **Active** O status desta categoria."
+      operationId: Company_GetStoresOfCompany
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: companyId
+          in: query
+          description: Id da Empresa (Guid)
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Lojas
+          schema:
+            $ref: '#/definitions/V2ResponseCompanyDto'
+        '400':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/BadRequestResult'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+  '/api/v{version}/company/update':
+    put:
+      tags:
+        - Company
+      summary: Atualiza a empresa ligado à sua conta.
+      description: "Para atualizar a \r\nParametros:\r\n* **name** (obrigatório) Nome da empresa.\r\n* **document** (obrigatório) Documento de identificaçao (CNPJ/CPF)       \r\n* **url** (opcional) A url da pag. de impacto da empresa. Ex.: polen.com.br/empresa/seu-nome. Caso ñ seja passado, o sistema criará um provisório. Caso já exista, é adicionado -N no final do texto."
+      operationId: Company_Update
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: companyId
+          in: query
+          description: Id da Empresa (Guid)
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com os dados do empresa
+          required: true
+          schema:
+            $ref: '#/definitions/V2CompanyDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados atualizados da Loja
+          schema:
+            $ref: '#/definitions/V2ResponseCompanyDto'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/company/create':
+    post:
+      tags:
+        - Company
+      summary: Cadastra uma nova empresa à sua conta.
+      description: " Uma empresa pode ter N lojas de diferentes tipos.\r\nParametros:\r\n* **name** (obrigatório) Nome da empresa.\r\n* **document** (obrigatório) Documento de identificaçao (CNPJ/CPF)       \r\n* **url** (opcional) A url da pag. de impacto da empresa. Ex.: polen.com.br/empresa/seu-nome. Caso ñ seja passado, o sistema criará um provisório. Caso já exista, é adicionado -N no final do texto.        \r\n* **segment** (opcional) O Segmento"
+      operationId: Company_Create
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com os dados do usuário a ser criado
+          required: true
+          schema:
+            $ref: '#/definitions/V2CompanyDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Empresa
+          schema:
+            $ref: '#/definitions/V2ResponseCompanyDto'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/donation/direct':
+    post:
+      tags:
+        - Donation Direct
+      summary: Cadastra uma nova doação direta
+      description: "Com este método podemos realizar doações via cartão de crédito ou boleto.\\\r\nO Polen cuida da doação de ponta a ponta. A partir do pagamento, passando pelas notificações via e-mail, confirmação de pagamento, confirmação de deposito realizado e \r\natualizações sobre o que a causa está fazendo com a doação através de fotos e vídeos enviados para o e-mail de quem doou.\r\nÉ possível configurar como deseja realizar essa doação de várias formas.\\\r\n Com Cartão de crédito: (objeto CreditCardData)  Não é necessário passar as informações de endereço\\\r\n Com Boleto: (objeto BankSlipData) Caso prefira não passar as informações de endereço, utilizamos as informações de endereço de sua empresa.\\\r\nParametros obrigatórios:\r\n* **storeId** (obrigatório) é o identificador da sua empresa. no Painel administrativo no menu Setup você encontra seu StoreId.                \r\n* **paymentMethod** (obrigatorio) 1 - cartão de credito / 2 - boleto\r\n* **donor** (obrigatório) Objeto com os dados do doador.\r\n* **CreditCardData** (obrigatório para pagamento c/ crédito) Objeto com os dados do cartão de crédito.\r\n* **BankSlipData** (obrigatório para pagamento c/ boleto) Objeto com os dados para gerar o boleto.\r\n* **Address** (opcional) Objeto com os dados de endereço do doador.\r\n* **Causes** (obrigatório) Lista do objeto \"Causes\". \r\n\r\nOs campos abaixos sao opcionais, mas ao preenche-los, conseguimos entregar um analytics completo do impacto social a partir do perfil do doador e das compras.\r\n* **childStoreId** (opcional) caso queira segmentar a loja, utilize este id. Ex.:  StoreId: 'walmart' / ChildStoreId: 'walmart-centro-curitiba'\r\n* **orderId** (opcional) O identificador (string) único que você utilizará para identificar esta doação. Caso não passe ou seja repetido, o próprio sistema irá gerar um novo ID\r\n* **BankFeeCovered** (opcional) Caso sua aplicação implemente a opção do doador cobrir taxas bancárias, essa taxa deve ser adicionada nesse campo. Taxas recomendadas: R$1,70 no boleto / 2,5% no cartão em 1x / 3% no cartão parcelado\r\n* **HasMatchFunding** (opcional)Caso sua campanha seja do tipo MatchFunding (usuário doa, a marca também doa) sete como true\r\n* **MatchingDonation** (opcional) Caso HasMatchFunding=true, Adicione o valor que a marca doará. Este valor não será cobrado do doador, o Polen gerará uma fatura com o montante a ser doado pela marca semanal/mensal, dependendo do acordo com a marca.\r\n* **Notes** (opcional) Caso queira deixar registrado alguma nota.\r\n\r\nO sistema permite você doar para mais de uma Ong ao mesmo tempo, no mesmo pagamento adicionando na lista \"Causes\".\r\nPara preencher a lista de Causes, é necessário o ID da causa correta. Você consegue essa informação no metodo /api/v1/cause\r\n\r\nO Polen permite escolher o sistema de pagamento deseja que o Polen utilize. Atualmente apenas \"Default\" está disponível."
+      operationId: Donation Direct_Create
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com a doacao a ser criado
+          required: true
+          schema:
+            $ref: '#/definitions/V2UserPaymentDonationDTO'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Doação
+          schema:
+            $ref: '#/definitions/V1ResponseDonation'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/donation/notify/detail':
+    get:
+      tags:
+        - Donation Notify
+      summary: Detalhes da Doação
+      description: "Traz os detalhes de uma doações específica a partir de seu Id.\r\nEsse Id é enviado como Response ao cadastrar/atualizar uma doa doação ou ao listar as doacoes\r\nParametros obrigatórios:        \r\n* **storeId** (obrigatório) é o identificador da loja (Guid).\r\n* **polenTransactionId** (opcional) se você armazena a transactionId do Polen que retornamos ao criar uma nova doacao, recomendamos usar esse parametro.\r\n* **orderId** (opcional) o identificador que você nos passou quando criou a doacao."
+      operationId: Donation Notify_GetByDonationId
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: Id (Guid) da loja
+          required: true
+          type: string
+        - name: polenTransactionId
+          in: query
+          description: Id da transacao do Polen
+          required: false
+          type: string
+          format: uuid
+        - name: orderId
+          in: query
+          description: Seu id que utiliza para identificar esta transação
+          required: false
+          type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Doação
+          schema:
+            $ref: '#/definitions/V1ResponseDonation'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/donation/notify/list':
+    get:
+      tags:
+        - Donation Notify
+      summary: Lista doaçoes da loja
+      description: "Traz uma lista das doações por Loja.\\\r\nPara filtrar por doações apenas de um determinado consumidor da loja, utilize o parâmetro **userId**.\r\n\r\nParametros obrigatórios:\r\n* **storeId** (obrigatório) é o identificador da loja (Guid).\r\n* **userId** (opcional) O id do consumidor que cadastrou em uma doação. Ao passar o userId, filtramos apenas por doação deste usuário.\r\n* **ngoId** (opcional) O id da Ong que cadastrou em uma doação. Ao passar o ongId, filtramos apenas por doação desta Ong.\r\n* **fromDate** (opcional) Data Inicial da pesquisa. Filtramos pelas doaçoes a partir desta data\r\n* **toDate** (opcional) Data Final da pesquisa. Filtramos pelas doaçoes até desta data ou se nulo, até o dia atual.\r\n* **page** (obrigatório) O número da página. Default: 1\r\n* **pageSize** (obrigatório) Total de doacoes por pagina. max: 100 / default: 20\r\n\r\nObs.: caso nao passe **fromDate** e **toDate** trazemos as doaçoes dos últimos 30 dias."
+      operationId: Donation Notify_Get
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: Id (Guid) da loja
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: >-
+            (opcional) Id ou Email, codigo que você cadastrou para identificar o
+            consumidor
+          required: false
+          type: string
+        - name: ngoId
+          in: query
+          description: >-
+            (opcional) Ngo, codigo da instituicao apoiada. Voce pode ver a lista
+            de causas que sua empresa apoia no /api/v2/causes
+          required: false
+          type: string
+        - name: fromDate
+          in: query
+          description: >-
+            (opcional) Formato: 'yyyy-MM-dd'.Data inicial para fazer uma busca
+            dentro de um espaço de tempo específico
+          required: false
+          type: string
+        - name: toDate
+          in: query
+          description: >-
+            (opcional) Formato: 'yyyy-MM-dd'. Data Final para fazer uma busca
+            dentro de um espaço de tempo específico
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Doações
+          schema:
+            $ref: '#/definitions/V1ResponseGetDonations'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/donation/notify/update':
+    put:
+      tags:
+        - Donation Notify
+      summary: Atualizar Status da Doação
+      description: "Caso o status da compra seja alterado, neste método atualizamos o status da doação.\r\nParâmetros:\r\n* **storeId** (obrigatório) é o identificador da loja (Guid).\r\n* **polenTransactionId** (opcional) se você armazena a transactionId do Polen que retornamos ao criar uma nova doacao, recomendamos usar esse parametro.\r\n* **orderId** (opcional) o identificador que você nos passou quando criou a doacao.\r\n* **status** (obrigatorio) passe aqui o valor int do novo status da doacao que deseja atualizar (0-Pending; 1-Confirmed; 2-Canceled; 3-Reversed; 4-Paid)\r\n\r\nobs.: É necessário passar o **polenTransactionId** ou o **orderId** para que funcione."
+      operationId: Donation Notify_Update
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: Id (Guid) da loja
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com a doacao a ser atualizada
+          required: true
+          schema:
+            $ref: '#/definitions/V2UpdateStatusDonationDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Doação
+          schema:
+            $ref: '#/definitions/V1ResponseDonation'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/donation/notify/create':
+    post:
+      tags:
+        - Donation Notify
+      summary: Cadastra uma nova doacao
+      description: " Adiciona uma nova doacao feita na loja.\\\r\n Apesar de vários campos opcionais, recomendamos o preenchimento do maior número de dados. Isso ajudará a filtrar facilmente as doaçoes e a gerar métricas mais detalhadas.        \r\nParametros obrigatórios:\r\n* **orderId** (obrigatório) o identificador que você utilizará para identificar esta transação.\r\n* **donation** (obrigatório) o valor da doação.        \r\n* **userId** (opcional-recomendado) O Id de identificação do usuario. ex.: cpf, email.\r\n* **ngoId** (opcional) Passe o id da Ong que quer apoiar, pode passar o id dela por aqui. Caso a Ong não existe na lista cadastrada da loja, a doação dará erro. Caso nao preencha este campo, o Polen aplicará a regra para escolher qual Ong doar.\\n Prioridade 1 -&gt; Uma Ong escolhida randomicamente do Usuário \\n, Prioridade 2 -&gt; Uma Ong escolhida randomicamente da Loja\r\n* **childStoreId** (opcional) caso queira segmentar a loja, utilize este id. Ex.:  StoreId: 'walmart' / ChildStoreId: 'walmart-centro-curitiba'\r\n* **status** (opcional) O status dessa doação. Status default: *Confirmed* (0-Pending; 1-Confirmed; 2-Canceled; 3-Reversed; 4-Paid)\r\n* **storeUrl** (opcional-recomendado) é a URL da loja no Polen, recomendado caso seja uma nova loja. ex.: um cnpj ou nome sem espaço e sem caracteres especiais. Este método cria a loja mas recomendamos criar em /store/create.\r\n* **createAt** (opcional) Data da criacao desta nova doacao. Caso não passe nada, utilizaremos a data atual.\r\n\r\nOs campos abaixos sao opcionais, mas ao preenche-los, conseguimos entregar um analytics completo do impacto social a partir do perfil do doador e das compras.\r\n* **purchase** (opcional) o valor da transação realizada. É opcional mas ao preencher conseguimos entregar um analytics mais completo do seu impacto.\r\n* **storeName** (opcional) facilita a visualizacao e a criação da landing page para a loja.\r\n* **userEmail**, **userName**, **userPhone**, **userGender** (opcional) Analytics específico para cada usuário\r\n* **userDocument** (opcional) Documento de identificaçao (cpf, rg, cnpj)\r\n* **birthdate** (opcional) Data de nascimento do usuário no formato yyy-MM-dd\r\n* **city**, **state**, **country**  (opcional) Analytics baseado na localizacao das doaçoes."
+      operationId: Donation Notify_Create
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O Identificador único da loja (Guid) que você utiliza.
+          required: true
+          type: string
+        - name: companyId
+          in: query
+          description: O Identificador único da empresa (Guid) que você utiliza.
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com a doacao a ser criado
+          required: true
+          schema:
+            $ref: '#/definitions/V2DonationDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Doação
+          schema:
+            $ref: '#/definitions/V1ResponseDonation'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/finance/billing/list':
+    get:
+      tags:
+        - Finance
+      summary: Lista de Faturas de Doação
+      description: "Traz todos as suas faturas de pagamento. Essas faturas podem ser apenas com doações ou faturas dos serviços prestados pelo Polen.\r\nNas faturas que incluam serviços do Polen também estará a Nota Fiscal destes serviços.\r\nNas faturas que contenham doações você saberá o status destas doações e pode ter acesso ao recibo de doação e ao comprovante de deposito.\r\n\r\nCaso a Polen seja a responsável pelos repasses financeiros para as instituições, o próprio Polen irá prover o comprovante de deposito. \r\nCaso a empresa faça os repasses diretamente, é necessário inserir o comprovante via painel administrativo.\r\n\r\nTanto o valor apresentado no recibo de doação como comprovante de deposito pode ser diferente do valor de doação. Isso ocorre caso o valor tenha sido repassado em um lote de depositos que inclui outras doações da sua empresa para a mesma instituição.\r\nNesse caso, você pode ver o valor completo em /transparency/receipts utilizando o DonationReceiptId que retornará junto com a fatura.\r\n\r\nEssas informações devem ser compiladas e passadas para sua contabilidade.\r\n* **storeId** (obrigatório) O Identificador único da loja que você utiliza. Ex.: \"walmart\" ou o CNPJ\r\n* **startDate** (opcional) Filtra por data inicial. Caso não adicione, por padrão o startDate é o primeiro dia do ano atual. \r\n* **endDate** (opcional) Filtra por data final. Caso não adicione, por padrão o endDate é a data e hora atual."
+      operationId: Finance_GetStoreStatements
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: id da loja
+          required: true
+          type: string
+        - name: startDate
+          in: query
+          description: Data de Inicio
+          required: false
+          type: string
+        - name: endDate
+          in: query
+          description: Data Final
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Faturas de Doação
+          schema:
+            $ref: '#/definitions/ResponseList[V2ResponseBilling]'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/platform/list':
+    get:
+      tags:
+        - Platform
+      summary: Lista de Plataformas com integração Nativa
+      description: "Traz todas plataformas parceiras que o Polen já possui integração nativa.\r\nChamamos de plataforma parceiros que possuem clientes que desejam utilizar o Polen. Esse parceiro pode ser por exemplo um marketplace, uma ticketeria, um app B2B, um app de delivery, etc.\r\n\r\nUtilize o campo **platformId** para criar uma Store já associada à plataforma desejada.\r\nDessa maneira já criaremos a Store com as pré-configurações da plataforma escolhida.\r\n\r\nEssa lista retorna as seguintes informações\r\n* **platformId** (obrigatório) O Identificador único da loja que você utiliza. Ex.: \"walmart\" ou o CNPJ\r\n* **platformName** (opcional) O Identificador único da Causa caso queira filtrar por causa. Ex.: \"abrinq\"\r\n* **platformUrl** (opcional) Filtra por data inicial. Caso não adicione, por padrão o startDate é o primeiro dia do ano atual."
+      operationId: Platform_GetPlatforms
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Plataformas Parceiras
+          schema:
+            $ref: '#/definitions/ResponseList[V2ResponsePlatform]'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/store/detail':
+    get:
+      tags:
+        - Store
+      summary: Detalhes da Loja
+      description: "Traz os detalhes de uma loja específica.\r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **storeId** (obrigatório) é o identificador da loja (Guid)."
+      operationId: Store_Get
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: Id (Guid) da loja
+          required: true
+          type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Loja
+          schema:
+            $ref: '#/definitions/V1ResponseStoreDto'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/store/list':
+    get:
+      tags:
+        - Store
+      summary: Lista de Lojas da sua conta
+      description: "Traz todas as lojas da sua conta detectada a partir do api_token\r\n       \r\nRetorna uma lista com as seguintes infos:\r\n* **ApiKey** a ApiKey da Loja       \r\n* **StoreId** o Id (GUID) da loja que deve usar para buscar as informações da loja\r\n* **StoreUrl** A URL da loja no Polen. ex.: polen.com.br/impacto/sua-marca\r\n* **Tags** Tags para filtrar a loja \r\n* **Email** \r\n* **Name** \r\n* **Logo** \r\n* **Phone** \r\n* **Domain** \r\n* **Document** Documento de identificação (CPF/CNPJ)\r\n* **CausesList** Lista das causas apoiadas\r\n* **Active** Se a loja está ativa ou não\r\n* **Test** Se a loja é de teste ou não.\r\n* **TotalDonated** Total já doado pela loja\r\n* **TotalBackers** Total de pessoas que já doaram."
+      operationId: Store_GetStores
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Lojas
+          schema:
+            $ref: '#/definitions/V2ResponseStores'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/store/update':
+    put:
+      tags:
+        - Store
+      summary: Atualiza a loja ligado à sua conta.
+      description: " Apesar de vários campos opcionais, recomendamos o preenchimento do maior número de dados. Isso ajudará a filtrar facilmente as doaçoes e a gerar métricas mais detalhadas.        \r\nParametros obrigatórios:\r\n* **email** (opcional-recomendado++)  E-mail do usuário.\r\n* **name** (opcional-recomendado) Nome do usuário.\r\n* **domain** (opcional) website da loja.\r\n* **phone** (opcional) Celular/telefone do usuário.\r\n* **logo** (opcional) Logo da loja.        \r\n* **address** (opcional) Endereço da loja        \r\n* **city** (opcional) Cidade da loja        \r\n* **state** (opcional) Estado da loja        \r\n* **zipcode** (opcional) CEP da loja \r\n* **document** (opcional) Documento de identificaçao (cpf, rg, cnpj)\r\n* **nameContact** (opcional) Nome da pessoa de contato desta loja\r\n* **tags** (opcional) ñ é necessário repetir ids já existentes, basta adicionar novos. Ñ é possível deletar ids via API no momento\r\n* **test** (opcional)  Setando o Test como 'true', nao contabilizamos as doaçoes feitas nesta loja. Por padrão vem 'false'\r\n* **active** (opcional)  Para ativar esta loja. Por padrão vem 'true'"
+      operationId: Store_Update
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O identificador da loja (Guid)
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com os dados do usuário a ser criado
+          required: true
+          schema:
+            $ref: '#/definitions/V2UpdateStoreDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados atualizados da Loja
+          schema:
+            $ref: '#/definitions/V1ResponseStoreDto'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/store/cause/add':
+    post:
+      tags:
+        - Store
+      summary: Adiciona Ong à Loja.
+      description: "Aqui você adiciona uma Ong à uma loja e ela ficará disponível para receber doação e ser apoiada pelos seus usuários.\r\nCaso já esteja cadastrada préviamente mas desativada, nós ativamos novamente.\r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **storeId** (obrigatório) O Identificador único da loja que você utiliza. Ex.: \"walmart\" ou o CNPJ \\n\r\nObjeto:        \r\n* **Array de string** Lista de ids das Causas ou Instituicoes que serao apoiadas. Este Id é o id único da instituiçao no Polen. Voce traz estes valores em /api/v2/cause. ex.: \"['abrinq','asid','sitawi']\"."
+      operationId: Store_AddOngToStore
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: É o identificador da loja (Guid)
+          required: true
+          type: string
+        - name: model
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados das causas apoiadas pela Loja
+          schema:
+            $ref: '#/definitions/V1ResponseStoreDto'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/store/create':
+    post:
+      tags:
+        - Store
+      summary: Cadastra um novo loja ligado à sua conta.
+      description: " Apesar de vários campos opcionais, recomendamos o preenchimento do maior número de dados. Isso ajudará a filtrar facilmente as doaçoes e a gerar métricas mais detalhadas.        \r\nParametros obrigatórios:\r\n* **storeUrl** (obrigatorio) é a URL da loja no Polen. ex.: um cnpj ou nome sem espaço e sem caracteres especiais. (ex.: polen.com.br/impacto/sua-marca)\r\n* **storeName** (obrigatorio) O nome da loja        \r\n* **document** (opcional) Documento de identificaçao (cpf, rg, cnpj) - ATENÇÃO: Este campo é obrigatório caso queira criar também uma nova Company (quando não passar o CompanyId)\r\n* **email** (opcional-recomendado++)  E-mail do usuário. Caso não passe, utilizaremos o e-mail associado à sua conta.\r\n* **name** (opcional-recomendado) Nome do usuário.\r\n* **domain** (opcional) website da loja.\r\n* **phone** (opcional) Celular/telefone do usuário.        \r\n* **logo** (opcional) Logo da loja.        \r\n* **address** (opcional) Endereço da loja        \r\n* **city** (opcional) Cidade da loja        \r\n* **state** (opcional) Estado da loja        \r\n* **zipcode** (opcional) CEP da loja        \r\n* **nameContact** (opcional) Nome da pessoa de contato desta loja\r\n* **causesList** (opcional) Lista de ids das Causas ou Instituicoes que serao apoiadas. Este Id é o id único da instituiçao no Polen. Voce traz estes valores em /api/v2/causes. ex.: \"['abrinq','asid','sitawi']\".\r\n* **tags** (opcional) caso queira criar filtros específicos para as doações da loja, utilize esta na lista de id. Ex.:  StoreId: 'mymarket' / tags: [''dia-dos-pais','mymarket-centro-curitiba','mymarket-jardimbotanico','promocao-especifica']\r\n* **platformId** (opcional) Caso esta loja seja de uma plataforma parceira do Polen, ela já é criada com as pré-configurações padrão dessa plataforma.  Veja os IDs abaixo\r\n* **test** (opcional)  Setando o Test como 'true', nao contabilizamos as doaçoes feitas nesta loja. Por padrão vem 'false'\r\n* **active** (opcional)  Para ativar esta loja. Por padrão vem 'true'   \r\n\r\nRegra de negócio: \\n\r\nAqui descrevemos algumas regras de negócio que a API permite através de customização."
+      operationId: Store_Create
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: companyId
+          in: query
+          description: Id da Empresa (Guid) - caso nulo criará a Store em uma nova Company
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com os dados do usuário a ser criado
+          required: true
+          schema:
+            $ref: '#/definitions/V2NewStoreDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Loja
+          schema:
+            $ref: '#/definitions/V1ResponseStoreDto'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/store/cause/remove':
+    post:
+      tags:
+        - Store
+      summary: Remove/Desabilita Ong da Loja.
+      description: "Aqui você remove ou desabilita novas causas à uma loja. \r\nCaso já exista alguma doação feita com essa causa, não é possível deletar mas desativamos da sua loja por padrão.\r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **storeId** (obrigatório) O Identificador único da loja que você utiliza. Ex.: \"walmart\" ou o CNPJ \\n\r\nObjeto:        \r\n* **Array de string** Lista de ids das Causas ou Instituicoes que serao apoiadas. Este Id é o id único da instituiçao no Polen. Voce traz estes valores em /api/v2/cause. ex.: \"['abrinq','asid','sitawi']\"."
+      operationId: Store_RemoveOngToStore
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: É o identificador da loja (Guid)
+          required: true
+          type: string
+        - name: model
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados das causas apoiadas pela Loja
+          schema:
+            $ref: '#/definitions/V1ResponseStoreDto'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/transaction/update/status':
+    post:
+      tags:
+        - Transaction
+      summary: Atualiza Apenas o Status de uma Transaction
+      description: "Esta Transaction já deve ter sido concluída (já possui um OrderId).\r\nEste método deve ser utilizado para atualizações posteriores à compra, apenas para o sistema Polen entender se a compra foi paga, cancelada, etc.\\        \r\nÉ obrigatório passar:       \r\n* **orderId** (obrigatório) o identificador da compra utilizado por sua loja que você passou no /update quando confirmou a compra como realizada.                \r\n* **status** (obrigatório) o status atual da compra. Passar um número inteiro.\r\n\r\nPossíveis status: \r\n* **0** - Pending\r\n* **1** - Confirmed\r\n* **2** - Canceled\r\n* **3** - Refunded\r\n* **4** - Paid\r\n* **5** - Donated (apenas leitura, não é possível setar para doado, o próprio sistema Polen faz a alteração.)\r\n\r\nDetalhes importantes:\\\r\nApenas o Polen consegue alterar o status da Transaction para 5-Donated. Caso já esteja como Donated não é mais possível alterar o status da Transaction.\\\r\nA mudança para o status Donated ocorre todo dia 5 com todas as transactions Pagas do mês anterior."
+      operationId: Transaction_UpdateStatus
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: orderId
+          in: query
+          description: Objeto com a doacao a ser criado
+          required: true
+          type: string
+        - name: status
+          in: query
+          description: Objeto com a doacao a ser criado
+          required: true
+          type: integer
+          format: int32
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Doação
+          schema:
+            $ref: '#/definitions/V1ResponseDonation'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/transparency/impact/consolidated':
+    get:
+      tags:
+        - Transparency
+      summary: Impacto Consolidado
+      description: "Traz um consolidado do total já doado por sua empresa e o impacto que isso teve nas causas apoiadas\r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **storeId** (obrigatório) Identificador único deste conteúdo. Esse identificador é o **id** do conteúdo que você consegue resgatar ao trazer a lista de conteúdos de impacto /v2/causecontent/list"
+      operationId: Transparency_GetConsolidatedImpact
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          required: true
+          type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados do Consolidado de Impacto
+          schema:
+            $ref: '#/definitions/V2ResponseStoreImpact'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/transparency/content/detail':
+    get:
+      tags:
+        - Transparency
+      summary: Detalhes do Conteúdo de Impacto
+      description: "Traz os detalhes de um conteúdo específico postado pela instituição a partir de seu Identificador único.       \r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **identifier** (obrigatório) Identificador único deste conteúdo. Esse identificador é o **id** do conteúdo que você consegue resgatar ao trazer a lista de conteúdos de impacto /v2/causecontent/list\r\n\r\nRetorna o conteúdo com as seguintes infos:\r\n* **Id** O identificador único do conteudo.\r\n* **CauseId** Id da causa.\r\n* **Title** Logo da instituiçao.\r\n* **Description** = ong.Categories?.Where(x =&gt; x.IsSelected).Select(x =&gt; new GenericIdNamePairDto { Name = x.Name, Id = x.Id }).ToList(),\r\n* **Type** Tipo do conteúdo. Photo = 0, PhotoAlbum = 1, Video = 2,\r\n* **Contents** Lista de urls com os conteúdos.\r\n    - Photo: O array só possui uma url com a imagem da foto adicionada\r\n    - PhotoAlbum: O array traz uma lista de urls de fotos.\r\n    - Video: O array traz uma url com um link de vídeo (youtube por padrão)\r\n* **Approved** Este conteúdo passa por uma curadoria prévia. Recomendamos apenas exibir conteúdos com approved=true\r\n* **Date** Data que este conteúdo foi postado\r\n* **DateOfImpact** A data real que esta ocorreu  esta foto/vídeo.\r\n* **DateApproved** A data que este conteúdo foi aprovado"
+      operationId: Transparency_GetByNgoContentId
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          required: true
+          type: string
+        - name: identifier
+          in: query
+          required: true
+          type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados do Conteúdo de Impacto
+          schema:
+            $ref: '#/definitions/V1ResponseCauseContent'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/InternalServerErrorResult'
+  '/api/v{version}/transparency/receipts':
+    get:
+      tags:
+        - Transparency
+      summary: Lista de Recibos de Doação
+      description: "Traz todos os recibos de doação assinados pelas instituições. Estes dados são importantes para a transparência pois é a instituição\r\nafirmando legalmente que a doação chegou até eles. Além disso isso é um comprovante não fiscal que dependendo da instituição apoiada é utilizado para abatimento fiscal.\r\nEssas informações devem ser compiladas e passadas para sua contabilidade.\r\n* **storeId** (obrigatório) O Identificador único da loja que você utiliza. Ex.: \"walmart\" ou o CNPJ\r\n* **causeId** (opcional) O Identificador único da Causa caso queira filtrar por causa. Ex.: \"abrinq\"\r\n* **startDate** (opcional) Filtra por data inicial. Caso não adicione, por padrão o startDate é o primeiro dia do ano atual. \r\n* **endDate** (opcional) Filtra por data final. Caso não adicione, por padrão o endDate é a data e hora atual."
+      operationId: Transparency_GetDonationReceipts
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: id da loja
+          required: true
+          type: string
+        - name: causeId
+          in: query
+          description: id da causa
+          required: true
+          type: string
+        - name: startDate
+          in: query
+          description: Data de Inicio
+          required: false
+          type: string
+        - name: endDate
+          in: query
+          description: Data Final
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Recibos de Doação
+          schema:
+            $ref: '#/definitions/ResponseList[V2ResponseDonationReceipt]'
+        '400':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/BadRequestResult'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+  '/api/v{version}/transparency/content/list':
+    get:
+      tags:
+        - Transparency
+      summary: Lista de Conteudo de Causas
+      description: "Traz todos os conteúdos postados pelas causas e instituições que sua empresa apoia como fotos, vídeos, depoimentos, recibos e comprovantes.\r\n* **storeId** (obrigatório) O Identificador único da loja que você utiliza. Ex.: \"walmart\" ou o CNPJ\r\n* **causeId** (opcional) O Identificador único da Causa caso queira filtrar por causa. Ex.: \"abrinq\"\r\n* **startDate** (opcional) Filtra por data inicial. Caso não adicione, por padrão o startDate é 30 dias atrás. \r\n* **endDate** (opcional) Filtra por data final. Caso não adicione, por padrão o endDate é a data e hora atual. \r\n\r\nRetorna uma lista de conteúdo com as seguintes infos:\r\n* **Id** O identificador único do conteudo.\r\n* **CauseId** Id da causa.\r\n* **Title** Logo da instituiçao.\r\n* **Description** = ong.Categories?.Where(x =&gt; x.IsSelected).Select(x =&gt; new GenericIdNamePairDto { Name = x.Name, Id = x.Id }).ToList(),\r\n* **Type** Tipo do conteúdo. Photo = 0, PhotoAlbum = 1, Video = 2,\r\n* **Contents** Lista de urls com os conteúdos.\r\n    - Photo: O array só possui uma url com a imagem da foto adicionada\r\n    - PhotoAlbum: O array traz uma lista de urls de fotos.\r\n    - Video: O array traz uma url com um link de vídeo (youtube por padrão)\r\n* **Approved** Este conteúdo passa por uma curadoria prévia. Recomendamos apenas exibir conteúdos com approved=true\r\n* **Date** Data que este conteúdo foi postado\r\n* **DateOfImpact** A data real que esta ocorreu  esta foto/vídeo.\r\n* **DateApproved** A data que este conteúdo foi aprovado"
+      operationId: Transparency_GetNgoContentList
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: id da loja
+          required: true
+          type: string
+        - name: causeId
+          in: query
+          description: id da causa
+          required: true
+          type: string
+        - name: startDate
+          in: query
+          description: Data de Inicio
+          required: false
+          type: string
+        - name: endDate
+          in: query
+          description: Data Final
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Conteudo de Causas
+          schema:
+            $ref: '#/definitions/ResponseList[V1ResponseCauseContent]'
+        '400':
+          description: BadRequest
+          schema:
+            $ref: '#/definitions/BadRequestResult'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/UnauthorizedResult'
+        '404':
+          description: NotFound
+          schema:
+            $ref: '#/definitions/NotFoundResult'
+  '/api/v{version}/user/detail':
+    get:
+      tags:
+        - User
+      summary: Detalhes do Usuário
+      description: "Traz os detalhes de um usuário específico a partir de seu Identificador único.       \r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **storeId** (obrigatório) O identificador da loja (Guid)\r\n* **polenUserId** (obrigatório)Identificador único deste usuario. Você pode utilizar a chave que utiliza no seu sistema, ou o email, cpf, etc. O importante é que seja um id único."
+      operationId: User_GetByPolenUserId
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O identificador da loja (Guid)
+          required: true
+          type: string
+        - name: polenUserId
+          in: query
+          description: >-
+            O identificador único deste usuario. Você pode utilizar a chave que
+            utiliza no seu sistema, ou o email, cpf, etc.
+          required: true
+          type: string
+          format: uuid
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados do Usuario
+          schema:
+            $ref: '#/definitions/V1ResponseUser'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+    delete:
+      tags:
+        - User
+      summary: Deletar Usuário
+      description: "Deletamos o usuário associado à loja. Só é possível deletar caso não exista nenhuma doação.   \r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **storeId** (obrigatório) O identificador da loja (Guid)\r\n* **userId** (obrigatório)Identificador único deste usuario. Você pode utilizar a chave que utiliza no seu sistema, ou o email, cpf, etc. O importante é que seja um id único."
+      operationId: User_DeleteUserId
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O identificador da loja (Guid)
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: >-
+            O identificador único deste usuario. Você pode utilizar a chave que
+            utiliza no seu sistema, ou o email, cpf, etc.
+          required: true
+          type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados do Usuario
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/user/impact':
+    get:
+      tags:
+        - User
+      summary: Impacto Social do Usuário
+      description: "Traz os detalhes do impacto social gerado pelo usuário através de suas doações     \r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **storeId** (obrigatório) O identificador da loja (Guid)\r\n* **userId** (obrigatório)Identificador único deste usuario. Você pode utilizar a chave que utiliza no seu sistema, ou o email, cpf, etc. O importante é que seja um id único."
+      operationId: User_GetImpactByUserId
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O identificador da loja (Guid)
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: >-
+            O identificador único deste usuario. Você pode utilizar a chave que
+            utiliza no seu sistema, ou o email, cpf, etc.
+          required: true
+          type: string
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados de Impacto do Usuário
+          schema:
+            $ref: '#/definitions/V1ResponseUser'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/user/list':
+    get:
+      tags:
+        - User
+      summary: Lista de Usuários da sua loja
+      description: "Traz todos os usuários de uma loja específica.\r\n* **storeId** (obrigatório) O identificador da loja (Guid)"
+      operationId: User_GetUsers
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: id da loja
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: pagina
+          required: false
+          type: integer
+          format: int32
+          default: 0
+        - name: pageSize
+          in: query
+          description: '(opcional) Total de doacoes por pagina. max: 100 / default: 20'
+          required: false
+          type: integer
+          format: int32
+          default: 20
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Lista de Usuários
+          schema:
+            $ref: '#/definitions/V1ResponseStoreDto'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/user/update':
+    put:
+      tags:
+        - User
+      summary: Atualiza um novo usuário ligado à sua loja.
+      description: " Apesar de vários campos opcionais, recomendamos o preenchimento do maior número de dados. Isso ajudará a filtrar facilmente as doaçoes e a gerar métricas mais detalhadas.        \r\nParametros obrigatórios:\r\n* **userId** (obrigatório) o identificador único deste usuario. Você pode utilizar a chave que utiliza no seu sistema, ou o email, cpf, etc. O importante é que seja um id único.\r\n* **name** (obrigatorio) Nome do usuário.\r\n* **email** (opcional-recomendado++)  E-mail do usuário.\r\n* **phone** (opcional) Celular/telefone do usuário.\r\n* **document** (opcional) Documento de identificaçao (cpf, rg, cnpj)\r\n* **gender** (opcional) M - Masculino, F - Feminino ou X\r\n* **birthdate** (opcional) Data de nascimento do usuário no formato yyy-MM-dd\r\n* **city** (opcional) Cidade do usuário\r\n* **state** (opcional) Estado do usuário. Padrao de 2 caracteres. ex.: 'SP'\r\n* **country** (opcional) País do usuário. Padrao de 2 caracteres. ex.: 'BR'\r\n* **verified** (opcional) utilizado caso queira fazer uma verificaçao adicional do usuario. Depende de sua regra de negocio. 'True' por padrao\r\n* **optIn** (opcional) utilizado para saber se deve ou nao deve enviar email. 'True' por padrao"
+      operationId: User_Update
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O identificador da loja (Guid)
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com os dados do usuário a ser criado
+          required: true
+          schema:
+            $ref: '#/definitions/V2UpdateUserDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados atualizados do Usuario
+          schema:
+            $ref: '#/definitions/V1ResponseUser'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/user/create':
+    post:
+      tags:
+        - User
+      summary: Criar um novo usuário ligado à sua loja.
+      description: " Apesar de vários campos opcionais, recomendamos o preenchimento do maior número de dados. Isso ajudará a filtrar facilmente as doaçoes e a gerar métricas mais detalhadas.        \r\nParametros:\r\n* **userId** (obrigatório) o identificador único deste usuario. Você pode utilizar a chave que utiliza no seu sistema, ou o email, cpf, etc. O importante é que seja um id único.\r\n* **name** (obrigatório) Nome do usuário.\r\n* **email** (opcional-recomendado++)  E-mail do usuário.        \r\n* **phone** (opcional) Celular/telefone do usuário.\r\n* **document** (opcional) Documento de identificaçao (cpf, rg, cnpj)\r\n* **gender** (opcional) M - Masculino, F - Feminino ou X\r\n* **birthdate** (opcional) Data de nascimento do usuário no formato yyy-MM-dd\r\n* **city** (opcional) Cidade do usuário\r\n* **state** (opcional) Estado do usuário. Padrao de 2 caracteres. ex.: 'SP'\r\n* **country** (opcional) País do usuário. Padrao de 2 caracteres. ex.: 'BR'\r\n* **verified** (opcional) utilizado caso queira fazer uma verificaçao adicional do usuario. Depende de sua regra de negocio. 'True' por padrao\r\n* **optIn** (opcional) utilizado para saber se deve ou nao deve enviar email. 'True' por padrao\r\n* **causesList** (opcional) Lista de ids das Causas ou Instituicoes que serao apoiadas. Este Id é o id único da instituiçao no Polen. Voce traz estes valores em /api/v2/causes. ex.: \"['abrinq','asid','sitawi']\".\r\n* **createAt** (opcional) Data da criacao deste novo usuário. Caso não passe nada, utilizaremos a data atual."
+      operationId: User_Create
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O identificador da loja (Guid)
+          required: true
+          type: string
+        - name: model
+          in: body
+          description: Objeto com os dados do usuário a ser criado
+          required: true
+          schema:
+            $ref: '#/definitions/V2NewUserDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados do Usuario
+          schema:
+            $ref: '#/definitions/V1ResponseUser'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+  '/api/v{version}/user/causes':
+    post:
+      tags:
+        - User
+      summary: Associar Causa ao Usuário.
+      description: "Aqui você adiciona ou desabilita novas causas à um usuário. \r\nPara adicionar novas causas, você adiciona a lista de ids no atributo addCausesList. \\n\r\nPara desabilitar causas apoiadas, você adiciona a lista de ids no atributo disableCausesList. \\n\r\nParametros obrigatórios:\r\n* **api_token** (obrigatório) chave de acesso à aplicação\r\n* **storeId** (obrigatório) O identificador da loja (Guid)\r\n* **userId** (obrigatório)Identificador único deste usuario. Você pode utilizar a chave que utiliza no seu sistema, ou o email, cpf, etc. O importante é que seja um id único.\r\nObjeto:\r\n* **addCausesList** (opcional) Lista de ids das Causas ou Instituicoes que serao apoiadas. Este Id é o id único da instituiçao no Polen. Voce traz estes valores em /api/v2/causes. ex.: \"['abrinq','asid','sitawi']\".\r\n* **disableCausesList** (opcional) Lista de ids das Causas ou Instituicoes que a loja já apoia mas quer inativar. Por padrao nao deletamos pois pode existir doaçoes para esta instituicao\"."
+      operationId: User_LinkOngToUser
+      consumes:
+        - application/json
+        - text/json
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+        - text/json
+      parameters:
+        - name: api_token
+          in: query
+          description: chave de acesso à aplicação
+          required: true
+          type: string
+        - name: storeId
+          in: query
+          description: O identificador da loja (Guid)
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: >-
+            O identificador único deste usuario. Você pode utilizar a chave que
+            utiliza no seu sistema, ou o email, cpf, etc.
+          required: true
+          type: string
+        - name: model
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/LinkCausesDto'
+        - name: version
+          in: path
+          description: The requested API version
+          required: true
+          type: string
+          default: '2'
+      responses:
+        '200':
+          description: Dados da Loja
+          schema:
+            $ref: '#/definitions/V1ResponseStoreDto'
+        '201':
+          description: Created
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '422':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/PolenApiError'
+        '500':
+          description: InternalServerError
+          schema:
+            $ref: '#/definitions/PolenApiError'
+definitions:
+  V1ResponseGetCauses:
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/V1ResponseCauseDto'
+      pageNumber:
+        format: int32
+        type: integer
+      nextPage:
+        type: string
+  V1ResponseCauseDto:
+    type: object
+    properties:
+      ngoId:
+        type: string
+      ngoName:
+        type: string
+      ngoLogo:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      description:
+        type: string
+      totalDonated:
+        format: double
+        type: number
+      totalBackers:
+        format: double
+        type: number
+      categories:
+        type: array
+        items:
+          $ref: '#/definitions/GenericIdNamePairDto'
+      active:
+        type: boolean
+      userSelected:
+        type: boolean
+  GenericIdNamePairDto:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+  PolenApiError:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errorCode:
+        format: int32
+        type: integer
+      error:
+        type: string
+  V2ResponseCompanyDto:
+    type: object
+    properties:
+      id:
+        type: string
+      document:
+        type: string
+      name:
+        type: string
+      logo:
+        type: string
+      url:
+        type: string
+      segment:
+        type: string
+  UnauthorizedResult:
+    type: object
+    properties:
+      challenges:
+        type: array
+        items:
+          $ref: '#/definitions/AuthenticationHeaderValue'
+        readOnly: true
+      request:
+        type: object
+        readOnly: true
+  AuthenticationHeaderValue:
+    type: object
+    properties:
+      scheme:
+        type: string
+        readOnly: true
+      parameter:
+        type: string
+        readOnly: true
+  NotFoundResult:
+    type: object
+    properties:
+      request:
+        type: object
+        readOnly: true
+  InternalServerErrorResult:
+    type: object
+    properties:
+      request:
+        type: object
+        readOnly: true
+  BadRequestResult:
+    type: object
+    properties:
+      request:
+        type: object
+        readOnly: true
+  V2CompanyDto:
+    type: object
+    properties:
+      document:
+        type: string
+      name:
+        type: string
+      logo:
+        type: string
+      url:
+        type: string
+      segment:
+        type: string
+  V2UserPaymentDonationDTO:
+    type: object
+    properties:
+      storeId:
+        type: string
+      childStoreId:
+        type: string
+      isTest:
+        type: boolean
+      campaignId:
+        format: uuid
+        type: string
+        example: 00000000-0000-0000-0000-000000000000
+      paymentMethod:
+        format: int32
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+        type: integer
+      orderId:
+        type: string
+      bankFeeCovered:
+        format: double
+        type: number
+      hasMatchFunding:
+        type: boolean
+      matchingDonation:
+        format: double
+        type: number
+      notes:
+        type: string
+      donor:
+        $ref: '#/definitions/V2UserDonationDonorInfoDto'
+      creditCardData:
+        $ref: '#/definitions/V2UserDonationCreditCardDto'
+      bankSlipData:
+        $ref: '#/definitions/V2UserDonationBankSlipDto'
+      address:
+        $ref: '#/definitions/V2UserDonationAddressDto'
+      causes:
+        type: array
+        items:
+          $ref: '#/definitions/V2UserDonationCausesDto'
+  V2UserDonationDonorInfoDto:
+    required:
+      - identifier
+    type: object
+    properties:
+      identifier:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      document:
+        type: string
+      gender:
+        type: string
+      birthDate:
+        type: string
+      verified:
+        type: boolean
+      optIn:
+        type: boolean
+  V2UserDonationCreditCardDto:
+    type: object
+    properties:
+      paymentSystem:
+        format: int32
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+        type: integer
+      fullName:
+        type: string
+      cardNumber:
+        type: string
+      expirationDate:
+        type: string
+      securityCode:
+        type: string
+      installmentQuantity:
+        format: int32
+        type: integer
+  V2UserDonationBankSlipDto:
+    type: object
+    properties:
+      paymentSystem:
+        format: int32
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+        type: integer
+      dueDate:
+        format: int32
+        type: integer
+  V2UserDonationAddressDto:
+    type: object
+    properties:
+      zipCode:
+        type: string
+      street:
+        type: string
+      number:
+        type: string
+      complement:
+        type: string
+      district:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+  V2UserDonationCausesDto:
+    type: object
+    properties:
+      causeId:
+        type: string
+      donation:
+        format: double
+        type: number
+  V1ResponseDonation:
+    type: object
+    properties:
+      transactionId:
+        format: uuid
+        type: string
+        example: 00000000-0000-0000-0000-000000000000
+      storeId:
+        type: string
+      storeUrl:
+        type: string
+      orderId:
+        type: string
+      donation:
+        format: double
+        type: number
+      userDonation:
+        format: double
+        type: number
+      purchase:
+        format: double
+        type: number
+      ngoId:
+        type: string
+      ngoName:
+        type: string
+      userId:
+        type: string
+      polenUserId:
+        type: string
+      userEmail:
+        type: string
+      status:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      createAt:
+        format: date-time
+        type: string
+  V1ResponseGetDonations:
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/V1ResponseDonation'
+      pageNumber:
+        format: int32
+        type: integer
+      nextPage:
+        type: string
+  V2UpdateStatusDonationDto:
+    type: object
+    properties:
+      polenTransactionId:
+        type: string
+      orderId:
+        type: string
+      status:
+        format: int32
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+        type: integer
+  V2DonationDto:
+    required:
+      - orderId
+      - donation
+      - userDonation
+      - userId
+    type: object
+    properties:
+      tags:
+        type: array
+        items:
+          type: string
+      storeName:
+        type: string
+      storeUrl:
+        type: string
+      orderId:
+        type: string
+      currency:
+        type: string
+      donation:
+        format: double
+        type: number
+      userDonation:
+        format: double
+        type: number
+      purchase:
+        format: double
+        type: number
+      ngoId:
+        type: string
+      userId:
+        type: string
+      userEmail:
+        type: string
+      userPhone:
+        type: string
+      userDocument:
+        type: string
+      userGender:
+        type: string
+      userBirthDate:
+        type: string
+      userName:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      paymentMethod:
+        type: string
+      notes:
+        type: string
+      status:
+        format: int32
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+        type: integer
+      createAt:
+        format: date-time
+        type: string
+      test:
+        type: boolean
+  'ResponseList[V2ResponseBilling]':
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/V2ResponseBilling'
+      pageNumber:
+        format: int32
+        type: integer
+      nextPage:
+        type: string
+  V2ResponseBilling:
+    type: object
+    properties:
+      id:
+        type: string
+      storeId:
+        type: string
+      paymentReceipt:
+        type: string
+      taxInvoice:
+        type: string
+      total:
+        format: double
+        type: number
+      totalPolen:
+        format: double
+        type: number
+      totalDonation:
+        format: double
+        type: number
+      date:
+        format: date-time
+        type: string
+      ngos:
+        type: array
+        items:
+          $ref: '#/definitions/V2ResponseBillingNgo'
+      status:
+        format: int32
+        type: integer
+  V2ResponseBillingNgo:
+    type: object
+    properties:
+      causeId:
+        type: string
+      donationReceipt:
+        type: string
+      depositReceipt:
+        type: string
+      donationReceiptId:
+        type: string
+      donation:
+        format: double
+        type: number
+      status:
+        format: int32
+        type: integer
+  'ResponseList[V2ResponsePlatform]':
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/V2ResponsePlatform'
+      pageNumber:
+        format: int32
+        type: integer
+      nextPage:
+        type: string
+  V2ResponsePlatform:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      url:
+        type: string
+  V1ResponseStoreDto:
+    type: object
+    properties:
+      apiKey:
+        type: string
+      apiToken:
+        type: string
+      storeId:
+        type: string
+      storeUrl:
+        type: string
+      childStoreId:
+        type: array
+        items:
+          type: string
+      email:
+        type: string
+      name:
+        type: string
+      logo:
+        type: string
+      phone:
+        type: string
+      domain:
+        type: string
+      document:
+        type: string
+      causesList:
+        type: array
+        items:
+          $ref: '#/definitions/V1ResponseCauseDto'
+      active:
+        type: boolean
+      test:
+        type: boolean
+      totalDonated:
+        format: double
+        type: number
+      totalBackers:
+        format: double
+        type: number
+      errorCode:
+        format: double
+        type: number
+  V2ResponseStores:
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/V2ResponseStoreDto'
+      pageNumber:
+        format: int32
+        type: integer
+      nextPage:
+        type: string
+  V2ResponseStoreDto:
+    type: object
+    properties:
+      apiKey:
+        type: string
+      storeId:
+        type: string
+      storeUrl:
+        type: string
+      companyId:
+        type: string
+      platformId:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      email:
+        type: string
+      name:
+        type: string
+      logo:
+        type: string
+      phone:
+        type: string
+      domain:
+        type: string
+      document:
+        type: string
+      causesList:
+        type: array
+        items:
+          $ref: '#/definitions/V1ResponseCauseDto'
+      active:
+        type: boolean
+      test:
+        type: boolean
+      totalDonated:
+        format: double
+        type: number
+      totalBackers:
+        format: double
+        type: number
+      errorCode:
+        format: double
+        type: number
+  V2UpdateStoreDto:
+    type: object
+    properties:
+      email:
+        type: string
+      storeUrl:
+        type: string
+      storeName:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      domain:
+        type: string
+      nameContact:
+        type: string
+      phone:
+        type: string
+      document:
+        type: string
+      logo:
+        type: string
+      address:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zipcode:
+        type: string
+      platformId:
+        type: string
+      test:
+        type: boolean
+      active:
+        type: boolean
+  V2NewStoreDto:
+    type: object
+    properties:
+      causesList:
+        type: array
+        items:
+          type: string
+      email:
+        type: string
+      storeUrl:
+        type: string
+      storeName:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      domain:
+        type: string
+      nameContact:
+        type: string
+      phone:
+        type: string
+      document:
+        type: string
+      logo:
+        type: string
+      address:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zipcode:
+        type: string
+      platformId:
+        type: string
+      test:
+        type: boolean
+      active:
+        type: boolean
+  V2ResponseStoreImpact:
+    type: object
+    properties:
+      storeId:
+        type: string
+      name:
+        type: string
+      logo:
+        type: string
+      ngos:
+        type: array
+        items:
+          $ref: '#/definitions/V2ResponseNgoImpactDetail'
+      totalRaised:
+        format: double
+        type: number
+      totalPurchases:
+        format: double
+        type: number
+  V2ResponseNgoImpactDetail:
+    type: object
+    properties:
+      ngoUrl:
+        type: string
+      totalRaised:
+        format: double
+        type: number
+      totalImpactMetric:
+        $ref: '#/definitions/ImpactMetric'
+      ngoActive:
+        type: boolean
+      ngoName:
+        type: string
+      ngoImage:
+        type: string
+      ngoLogo:
+        type: string
+      ngoDescription:
+        type: string
+      ngoBackground:
+        type: string
+      show:
+        type: boolean
+  ImpactMetric:
+    type: object
+    properties:
+      uniqueMetricId:
+        format: uuid
+        type: string
+        example: 00000000-0000-0000-0000-000000000000
+      unit:
+        format: double
+        type: number
+      description:
+        type: string
+  V1ResponseCauseContent:
+    type: object
+    properties:
+      id:
+        type: string
+      causeId:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      contents:
+        type: array
+        items:
+          type: string
+      approved:
+        type: boolean
+      type:
+        format: int32
+        type: integer
+      date:
+        format: date-time
+        type: string
+      dateOfImpact:
+        format: date-time
+        type: string
+      dateApproved:
+        format: date-time
+        type: string
+  'ResponseList[V2ResponseDonationReceipt]':
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/V2ResponseDonationReceipt'
+      pageNumber:
+        format: int32
+        type: integer
+      nextPage:
+        type: string
+  V2ResponseDonationReceipt:
+    type: object
+    properties:
+      id:
+        type: string
+      causeId:
+        type: string
+      donationReceipt:
+        type: string
+      datePayment:
+        format: date-time
+        type: string
+      dateRequest:
+        format: date-time
+        type: string
+      status:
+        format: int32
+        type: integer
+      dateAvailable:
+        format: date-time
+        type: string
+      billingIdList:
+        type: array
+        items:
+          type: string
+  'ResponseList[V1ResponseCauseContent]':
+    type: object
+    properties:
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/V1ResponseCauseContent'
+      pageNumber:
+        format: int32
+        type: integer
+      nextPage:
+        type: string
+  V1ResponseUser:
+    type: object
+    properties:
+      identifier:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      document:
+        type: string
+      causesList:
+        type: array
+        items:
+          type: string
+  V2UpdateUserDto:
+    required:
+      - userId
+    type: object
+    properties:
+      userId:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      document:
+        type: string
+      gender:
+        type: string
+      birthdate:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      verified:
+        type: boolean
+      optIn:
+        type: boolean
+      createAt:
+        format: date-time
+        type: string
+  V2NewUserDto:
+    required:
+      - userId
+    type: object
+    properties:
+      causesList:
+        type: array
+        items:
+          type: string
+      userId:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      document:
+        type: string
+      gender:
+        type: string
+      birthdate:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      verified:
+        type: boolean
+      optIn:
+        type: boolean
+      createAt:
+        format: date-time
+        type: string
+  LinkCausesDto:
+    type: object
+    properties:
+      addCausesList:
+        type: array
+        items:
+          type: string
+      disableCausesList:
+        type: array
+        items:
+          type: string
