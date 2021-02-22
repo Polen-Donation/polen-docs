@@ -4,7 +4,7 @@ title: Transparency
 ---
 :::important IMPORTANTE
 
-Para mais detalhes sobre os dados de entrada e saída consulte a documentação da API.
+Para mais detalhes sobre os dados de entrada e saída consulte a [documentação da API](/api-reference).
 :::
 
 ## Get Impact Consolidated

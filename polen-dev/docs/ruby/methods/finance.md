@@ -4,7 +4,7 @@ title: Finance
 ---
 :::important IMPORTANTE
 
-Para mais detalhes sobre os dados de entrada e saída consulte a documentação da API.
+Para mais detalhes sobre os dados de entrada e saída consulte a [documentação da API](/api-reference).
 :::
 
 ## Get Finance Billing List
@@ -19,7 +19,7 @@ Este método retorna todas as suas faturas de pagamento.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-        - results: `[]`.
+        - results: `array`.
         - pageNumber: `number`.
         - nextPage: `string`.
     - `code`: status da requisição.

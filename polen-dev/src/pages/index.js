@@ -13,7 +13,7 @@ const features = [
     description: (
       <>
         Nossa API foi projeteda para que qualquer usuário possa usa-la de maneira simples e intuitiva.
-        Seja você junior ou sênior, nossa API vai te atender você.
+        Seja você junior ou sênior, nossa API vai te atender.
       </>
     ),
   },
@@ -22,7 +22,7 @@ const features = [
     imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-        A API do polen permite que você foque em fazer e não em como fazer, nós cuidamos disso para você com funções e métodos prontos feitos para varias liguagens de programação diferentes.
+        A API do polen permite que você foque em fazer e não em como fazer, nós cuidamos disso para você com funções e métodos prontos feitos para varias linguagens de programação diferentes.
       </>
     ),
   },

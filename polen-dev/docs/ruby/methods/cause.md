@@ -5,7 +5,7 @@ title: Cause
 
 :::important IMPORTANTE
 
-Para mais detalhes sobre os dados de entrada e saída consulte a documentação da API.
+Para mais detalhes sobre os dados de entrada e saída consulte a [documentação da API](/api-reference).
 :::
 
 ## Get All Causes
@@ -17,7 +17,7 @@ Este método retorna todas as instituições cadastradas no Polen.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-        - results: `[]`.
+        - results: `array`.
         - pageNumber: `number`.
         - nextPage: `string`.
     - `code`: status da requisição.
@@ -41,7 +41,7 @@ Este método retorna todas as categorias de causas cadastradas no Polen.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-        - results: `[]`.
+        - results: `array`.
         - pageNumber: `number`.
         - nextPage: `string`.
     - `code`: status da requisição.
@@ -69,14 +69,12 @@ Este método retorna as causas apoiadas por uma loja.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-        - results: `[]`.
+        - results: `array`.
         - pageNumber: `number`.
         - nextPage: `string`.
     - `code`: status da requisição.
 ```ruby
 params = {
-  page: 0,
-  pageSize: 5,
   storeId: "id"
 }
 

@@ -5,9 +5,8 @@ title: Donation Notify
 
 :::important IMPORTANTE
 
-Para mais detalhes sobre os dados de entrada e saída consulte a documentação da API.
+Para mais detalhes sobre os dados de entrada e saída consulte a [documentação da API](/api-reference).
 :::
-
 ## Get Notify Donation
 
 Traz os detalhes de uma doações específica a partir de seu Id.
@@ -42,7 +41,7 @@ puts notify_donation.body
 ```
 
 ## Get Notify Donation List
-Traz os detalhes de uma doações específica a partir de seu Id.
+Traz os detalhes de uma doação específica a partir do seu id.
 
 - Recebe o argumento `params` que é um hash com os campos:
     - `page`: (opcional) número de uma página especifica - `number`.

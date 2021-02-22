@@ -5,7 +5,7 @@ title: Donation Direct
 
 :::important IMPORTANTE
 
-Para mais detalhes sobre os dados de entrada e saída consulte a documentação da API.
+Para mais detalhes sobre os dados de entrada e saída consulte a [documentação da API](/api-reference).
 :::
 
 ## Create Donation Direct
@@ -28,9 +28,21 @@ Este método cria uma doação direta.
 
 - Retorna um objeto com os métodos:
     - `body`: conteúdo da resposta.
-        - results: `[]`.
-        - pageNumber: `number`.
-        - nextPage: `string`.
+      - transactionId: `string`.
+      - storeId: `string`.
+      - storeUrl: `string`.
+      - orderId: `string`.
+      - donation: `number`.
+      - userDonation: `number`.
+      - purchase: `number`.
+      - ngoId: `string`.
+      - ngoName: `string`.
+      - userId: `string`.
+      - polenUserId: `string`.
+      - userEmail: `string`.
+      - status: `string`.
+      - tags: `array`.
+      - createAt: `string`.
     - `code`: status da requisição.
 ```ruby
 payload = {
