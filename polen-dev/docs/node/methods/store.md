@@ -10,11 +10,11 @@ Para mais detalhes sobre os dados de entrada e saída consulte a [documentação
 ## Get Store Details
 Este método retorna os detalhes de uma loja específica.
 
-- Recebe o argumento `params` que é um dicionário com os campos:
+- Recebe o argumento `params` que é um objeto com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
 
 - Retorna um objeto com os métodos:
-    - `content`: conteúdo da resposta.
+    - `data`: conteúdo da resposta.
         - apiKey: `string`.
         - apiToken: `string`.
         - storeId: `string`.
@@ -32,48 +32,48 @@ Este método retorna os detalhes de uma loja específica.
         - totalDonated: `number`.
         - totalBackers: `number`.
         - errorCode: `number`.
-    - `status_code`: status da requisição.
+    - `status`: status da requisição.
 
-```python
-params = {
-  'storeId': "id",
+```javascript
+const params = {
+  storeId: "id",
 }
 
-store_detail = polen.get_store_details(params)
-print(store_detail.content)
+const storeDetail = polen.getStoreDetails(params)
+print(storeDetail.data)
 ```
 
 ## Get Store List
 Este método retorna todas as lojas da sua conta.
 
-- Recebe o argumento `params` que é um dicionário com os campos:
+- Recebe o argumento `params` que é um objeto com os campos:
     - `page`: (opcional) número de uma página especifica - `number`.
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
 
 - Retorna um objeto com os métodos:
-    - `content`: conteúdo da resposta.
+    - `data`: conteúdo da resposta.
         - result: `array`.
         - pageNumber: `number`.
         - nextPage: `string`.
-    - `status_code`: status da requisição.
+    - `status`: status da requisição.
 
-```python
-params = {
-  'page': 20,
-  'pageSize': 50
+```javascript
+const params = {
+  page: 20,
+  pageSize: 50
 }
 
-list = polen.get_company_stores(params)
-print(list.content)
+const list = polen.getCompanyStores(params)
+console.log(list.data)
 ```
 
 ## Update Store
 Este método atualiza dados de uma empresa.
 
-- Recebe o argumento `params` que é um dicionário com os campos:
+- Recebe o argumento `params` que é um objeto com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
 
-- Recebe o argumento `payload` que é um dicionário com os campos:
+- Recebe o argumento `payload` que é um objeto com os campos:
     - `causeList`: (opcional) lista de causas apoiadas - `string`.
     - `storeName`: (opcional) nome da loja - `string`.
     - `email`: (opcional) email do usuário - `string`.
@@ -94,7 +94,7 @@ Este método atualiza dados de uma empresa.
     - `platformId`: (opcional) id da plataforma - `string`.
     
 - Retorna um objeto com os métodos:
-    - `content`: conteúdo da resposta.
+    - `data`: conteúdo da resposta.
         - apiKey: `string`.
         - apiToken: `string`.
         - storeId: `string`.
@@ -112,49 +112,49 @@ Este método atualiza dados de uma empresa.
         - totalDonated: `number`.
         - totalBackers: `number`.
         - errorCode: `number`.
-    - `status_code`: status da requisição.
+    - `status`: status da requisição.
 
-```python
-params = {
-  'storeId': ""
+```javascript
+const params = {
+  storeId: ""
 }
 
-body = {
-  'email': "",
-  'storeUrl': "",
-  'storeName': "",
-  'tags': [
+const body = {
+  email: "",
+  storeUrl: "",
+  storeName: "",
+  tags: [
     ""
   ],
-  'domain': "",
-  'nameContact': "",
-  'phone': "",
-  'document': "",
-  'logo': "",
-  'address': "",
-  'city': "",
-  'state': "",
-  'zipcode': "",
-  'platformId': "",
-  'test': false,
-  'active': false
+  domain: "",
+  nameContact: "",
+  phone: "",
+  document: "",
+  logo: "",
+  address: "",
+  city: "",
+  state: "",
+  zipcode: "",
+  platformId: "",
+  test: false,
+  active: false
 }
 
-update = polen.update_store(params, body)
-print(update.content)
+const update = polen.updateStore(params, body)
+console.log(update.data)
 ```
 
 ## Add Cause Store
 Este método adiciona causas a uma loja.
 
-- Recebe o argumento `params` que é um dicionário com os campos:
+- Recebe o argumento `params` que é um objeto com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
 
-- Recebe o argumento `payload` que é um dicionário com os campos:
+- Recebe o argumento `payload` que é um objeto com os campos:
     - `Array de string`: lista de ids das Causas ou Instituicoes que serao apoiadas - `array`.
 
 - Retorna um objeto com os métodos:
-    - `content`: conteúdo da resposta.
+    - `data`: conteúdo da resposta.
       - apiKey: `string`.
       - apiToken: `string`.
       - storeId: `string`.
@@ -172,26 +172,26 @@ Este método adiciona causas a uma loja.
       - totalDonated: `number`.
       - totalBackers: `number`. 
       - errorCode: `number`.
-    - `status_code`: status da requisição.
+    - `status`: status da requisição.
 
-```python
-params = {
-  'storeId': "id"
+```javascript
+const params = {
+  storeId: "id"
 }
 
-body = [""]
+const body = [""]
 
-add_cause = polen.add_cause_store(params, body)
-print(add_cause.content)
+const addCause = polen.addCauseStore(params, body)
+console.log(addCause.data)
 ```
 
 ## Create Store
 Este método cria uma nova loja.
 
-- Recebe o argumento `params` que é um dicionário com os campos:
+- Recebe o argumento `params` que é um objeto com os campos:
     - `companyId`: (obrigatório) id da empresa - `string`.
 
-- Recebe o argumento `payload` que é um dicionário com os campos:
+- Recebe o argumento `payload` que é um objeto com os campos:
     - `storeName`: (opcional) nome da loja - `string`.
     - `causesList`: (opcional) lista de causa apoiadas - `array`.
     - `storeUrl`: (opcional) url da loja - `string`.
@@ -213,7 +213,7 @@ Este método cria uma nova loja.
     - `platformId`: (opcional) id da plataforma - `string`.
 
 - Retorna um objeto com os métodos:
-    - `content`: conteúdo da resposta.
+    - `data`: conteúdo da resposta.
         - apiKey: `string`.
         - apiToken: `string`.
         - storeId: `string`.
@@ -231,49 +231,49 @@ Este método cria uma nova loja.
         - totalDonated: `number`.
         - totalBackers: `number`.
         - errorCode: `number`.
-    - `status_code`: status da requisição.
+    - `status`: status da requisição.
 
-```python
-params = {
-  'companyId': ""
+```javascript
+const params = {
+  companyId: ""
 }
 
-body = {
-  'email': "",
-  'storeUrl': "",
-  'storeName': "",
-  'tags': [
+const body = {
+  email: "",
+  storeUrl: "",
+  storeName: "",
+  tags: [
     ""
   ],
-  'domain': "",
-  'nameContact': "",
-  'phone': "",
-  'document': "",
-  'logo': "",
-  'address': "",
-  'city': "",
-  'state': "",
-  'zipcode': "",
-  'platformId': "",
-  'test': false,
-  'active': false
+  domain: "",
+  nameContact: "",
+  phone: "",
+  document: "",
+  logo: "",
+  address: "",
+  city: "",
+  state: "",
+  zipcode: "",
+  platformId: "",
+  test: false,
+  active: false
 }
 
-create = polen.create_store(params, body)
-print(create.content)
+const create = polen.createStore(params, body)
+console.log(create.data)
 ```
 
 ## Remove Cause Store
 Este método remove causas de uma loja.
 
-- Recebe o argumento `params` que é um dicionário com os campos:
+- Recebe o argumento `params` que é um objeto com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
 
 - Recebe o argumento `payload` que é um array:
     - `Array de string`: lista de ids das causas ou instituições que serão removidas - `array`.
 
 - Retorna um objeto com os métodos:
-    - `content`: conteúdo da resposta.
+    - `data`: conteúdo da resposta.
         - apiKey: `string`.
         - apiToken: `string`.
         - storeId: `string`.
@@ -292,15 +292,15 @@ Este método remove causas de uma loja.
         - totalBackers: `number`
         - errorCode: `number`
 
-    - `status_code`: status da requisição.
+    - `status`: status da requisição.
 
-```python
-params = {
-  'storeId': "id"
+```javascript
+const params = {
+  storeId: "id"
 }
 
-body = [""]
+const body = [""]
 
-remove_cause = polen.remove_cause_store(params, body)
-print(remove_cause.content)
+const removeCause = polen.removeCauseStore(params, body)
+console.log(removeCause.content)
 ```

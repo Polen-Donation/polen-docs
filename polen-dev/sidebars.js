@@ -29,6 +29,20 @@ module.exports = {
         "python/methods/transparency",
         "python/methods/user"
       ]
+    }],
+    Node: ["node/node-install", {
+      "Métodos":[
+        "node/methods/cause",
+        "node/methods/company",
+        "node/methods/donation-direct",
+        "node/methods/finance",
+        "node/methods/notify-donation",
+        "node/methods/platform",
+        "node/methods/store",
+        "node/methods/transaction",
+        "node/methods/transparency",
+        "node/methods/user"
+      ]
     }]
   },
 };
