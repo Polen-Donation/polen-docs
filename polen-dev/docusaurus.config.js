@@ -4,7 +4,7 @@ const path = require('path');
 const spec = fs.readFileSync('./polen.yaml', 'utf-8');
 
 module.exports = {
-  title: 'Polen',
+  title: 'Polen API',
   tagline: 'A sua API para doações',
   url: 'https://Polen-Donation.github.io',
   baseUrl: '/polen-docs/',
@@ -28,7 +28,7 @@ module.exports = {
       //... other Algolia params
     },
     navbar: {
-      title: 'Polen',
+      title: 'Polen API',
       logo: {
         alt: 'Logo do Polen',
         src: 'img/logo.svg',
