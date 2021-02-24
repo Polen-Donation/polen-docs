@@ -10,7 +10,7 @@ A instalação da PolenAPI é feita de forma simples conforme os passos descrito
 - Versão do Ruby: Deve ser 2.7 ou superior (que pode ser verificado executando `ruby --version`).
 
 ## Instalação
-
+Você pode encontrar essa e várias outras bibliotecas em nossos [repositórios](/).
 A maneira mais fácil de instalar a PolenAPI é usar a ferramenta de linha de comando. Você pode executar este comando em qualquer lugar em um novo repositório ou dentro de um repositório existente.
 
 ```shell

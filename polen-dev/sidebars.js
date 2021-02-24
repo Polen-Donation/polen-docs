@@ -1,7 +1,6 @@
 module.exports = {
   someSidebar: {
-    Docusaurus: ['doc1', 'doc2', 'doc3'],
-    Features: ['mdx'],
+    "Introdução": ['autenticacao', 'widgets', 'suporte'],
     Ruby: ["ruby/ruby-install", {
       "Métodos":[
         "ruby/methods/cause",

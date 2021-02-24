@@ -70,8 +70,9 @@
     padding: 2rem;
   }
 
-  .containerFeature, .containerFeature:nth-child(2) {
+  .containerFeature, .containerFeature:nth-child(2n) {
     flex-direction: column;
+    margin-bottom: 40px;
   }
   .imageFeatureContainer, .textFeatureContainer {
     width: 100%;

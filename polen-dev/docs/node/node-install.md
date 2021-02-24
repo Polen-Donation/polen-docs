@@ -13,7 +13,7 @@ A instalação da PolenAPI é feita de forma simples conforme os passos descrito
 ## Instalação
 
 A maneira mais fácil de instalar a PolenAPI é usar a ferramenta de linha de comando. Você pode executar este comando em qualquer lugar em um novo repositório ou dentro de um repositório existente.
-
+Você pode encontrar essa e várias outras bibliotecas em nossos [repositórios](/).
 ```shell
 npm install linkDoGit
 ```

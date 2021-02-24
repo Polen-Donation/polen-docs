@@ -64,38 +64,50 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
+              label: 'Introdução',
               to: 'docs/',
             },
             {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
+              label: 'Widgets',
+              to: 'docs/widgets/',
+            },
+            {
+              label: 'Suporte',
+              to: 'docs/suporte/',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Comunidade',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
             {
               label: 'Discord',
               href: 'https://discordapp.com/invite/docusaurus',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: 'Facebook',
+              href: 'https://www.facebook.com/sigaopolen/',
             },
+            {
+              label: 'Instagram',
+              href: 'https://www.instagram.com/opolen/',
+            },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/o-polen/',
+            },
+            {
+              label: 'YouTube',
+              href: 'https://www.youtube.com/channel/UChyN5Aps8nFLyqTtVf-TMtA',
+            }
           ],
         },
         {
-          title: 'More',
+          title: 'Mais',
           items: [
             {
               label: 'Blog',
-              to: 'blog',
+              to: 'http://blog.opolen.com.br/?__hstc=260778002.a05414c38de10552571f7dc1e437d52d.1591039181164.1593089703732.1593093583542.34&__hssc=260778002.2.1593093583542&__hsfp=3514408592',
             },
             {
               label: 'GitHub',
@@ -116,12 +128,6 @@ module.exports = {
           // Please change this to your repo.
           editUrl:
             'https://github.com/facebook/docusaurus/edit/master/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
