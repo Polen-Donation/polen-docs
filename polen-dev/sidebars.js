@@ -15,6 +15,20 @@ module.exports = {
         "ruby/methods/transparency",
         "ruby/methods/user"
       ]
+    }],
+    Python: ["python/python-install", {
+      "Métodos":[
+        "python/methods/cause",
+        "python/methods/company",
+        "python/methods/donation-direct",
+        "python/methods/finance",
+        "python/methods/notify-donation",
+        "python/methods/platform",
+        "python/methods/store",
+        "python/methods/transaction",
+        "python/methods/transparency",
+        "python/methods/user"
+      ]
     }]
   },
 };

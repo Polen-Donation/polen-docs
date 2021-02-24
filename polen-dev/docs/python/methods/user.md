@@ -10,85 +10,85 @@ Para mais detalhes sobre os dados de entrada e saída consulte a [documentação
 ## Get User Detail
 Este método retorna detalhes de um usuário específico.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
     - `userId`: (obrigatório) id da loja - `string`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - identifier: `string`.
         - email: `string`.
         - name: `string`.
         - phone: `string`.
         - document: `string`.
         - causesList: `array`.
-    - `code`: status da requisição.
+    - `status_code`: status da requisição.
 
-```ruby
+```python
 params = {
-  storeId: "",
-  userId: "",
+  'storeId': "",
+  'userId': "",
 }
 
 impact = polen.get_imapact_consolidated(params)
-puts impact.body
+print(impact.content)
 ```
 
 ## Delete User
 Este método deleta um usuário específico.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
     - `userId`: (obrigatório) id da loja - `string`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - success: `boolean`.
         - errorCode: `number`.
         - error: `string`.
-    - `code`: status da requisição.
+    - `status_code`: status da requisição.
 
-```ruby
+```python
 params = {
-  storeId: "",
-  userId: "",
+  'storeId': "",
+  'userId': "",
 }
 
 delete = polen.delete_user(params)
-puts delete.body
+print(delete.content)
 ```
 
 ## Get User List
 Este método retorna uma lista de usuários.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `page`: (opcional) número de uma página especifica - `number`.
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
     - `storeId`: (obrigatório) id da loja - `string`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - results: `array`.
         - pageNumber: `number`.
         - nextPage: `string`.   .
-    - `code`: status da requisição.
+    - `status_code`: status da requisição.
 
-```ruby
+```python
 params = {
   storeId: "",
 }
 
 list = polen.get_user_list(params)
-puts list.body
+print(list.content)
 ```
 
 ## Update User
 Este método atualiza dados de um usuário.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
 
-- Recebe o argumento `payload` que é um hash com os campos:
+- Recebe o argumento `body` que é um dicionário com os campos:
     - `userId`: (obrigatório) id do usuário - `string`.
     - `email`: (opciona) email do usuário - `string`.
     - `name`: (obrigatório) nome do usuário - `string`.
@@ -104,47 +104,47 @@ Este método atualiza dados de um usuário.
     - `createAt`: (opcional) data da requisição - `string`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - identifier: `string`.
         - email: `string`.
         - name: `string`.
         - phone: `string`.
         - document: `string`.
         - causesList: `array`.
-    - `code`: status da requisição.
+    - `status_code`: status da requisição.
 
-```ruby
+```python
 params = {
-  storeId: "",
+  'storeId': "",
 }
 
-payload = {
-  userId: "",
-  email: "",
-  name: "",
-  phone: "",
-  document: "",
-  gender: "",
-  birthdate: "",
-  city: "",
-  state: "",
-  country: "",
-  verified: false,
-  optIn: false,
-  createAt: "2021-02-12T12:49:25.636Z"
+body = {
+  'userId': "",
+  'email': "",
+  'name': "",
+  'phone': "",
+  'document': "",
+  'gender': "",
+  'birthdate': "",
+  'city': "",
+  'state': "",
+  'country': "",
+  'verified': false,
+  'optIn': false,
+  'createAt': "2021-02-12T12:49:25.636Z"
 }
 
-update = polen.update_user(payload, params)
-puts update.body
+update = polen.update_user(payload, body)
+print(update.content)
 ```
 
 ## Create User
 Este método adiciona um novo usuário.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
 
-- Recebe o argumento `payload` que é um hash com os campos:
+- Recebe o argumento `body` que é um dicionário com os campos:
     - `causeList`: (opcional) lista de causas que serão apoiadas - `array`.
     - `userId`: (obrigatório) id do usuário - `string`.
     - `email`: (opciona) email do usuário - `string`.
@@ -161,21 +161,21 @@ Este método adiciona um novo usuário.
     - `createAt`: (opcional) data da requisição - `string`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - identifier: `string`.
         - email: `string`.
         - name: `string`.
         - phone: `string`.
         - document: `string`.
         - causesList: `array`.
-    - `code`: status da requisição.
+    - `status_code`: status da requisição.
 
-```ruby
+```python
 params = {
   storeId: "",
 }
 
-payload = {
+body = {
   causeList: [],
   userId: "",
   email: "",
@@ -192,23 +192,23 @@ payload = {
   createAt: "2021-02-12T12:49:25.636Z"
 }
 
-create = polen.create_user(payload, params)
-puts create.body
+create = polen.create_user(payload, body)
+print(create.content)
 ```
 
 ## Add User Cause
 Este método associa/desassocia causas a um usuário.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
     - `userId`: (obrigatório) id do usuário - `string`.
 
-- Recebe o argumento `payload` que é um hash com os campos:
+- Recebe o argumento `body` que é um dicionário com os campos:
     - `addCauseList`: (opcional) causas que deseja adicionar - `array`.
     - `disableCausesList`: (obrigatório) causas que deseja remover - `array`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - apiKey: `string`.
         - apiToken: `string`.
         - storeId: `string`.
@@ -226,15 +226,15 @@ Este método associa/desassocia causas a um usuário.
         - totalDonated: `number`
         - totalBackers: `number`
         - errorCode: `number`
-    - `code`: status da requisição.
+    - `status_code`: status da requisição.
 
-```ruby
+```python
 params = {
-  storeId: "",
-  userId: "",
+  'storeId': "",
+  'userId': "",
 }
 
-payload = {
+body = {
   "addCausesList": [
     ""
   ],
@@ -243,6 +243,6 @@ payload = {
   ]
 }
 
-add = polen.add_user_cause(payload, params)
-puts add.body
+add = polen.add_user_cause(payload, body)
+print(add.content)
 ```

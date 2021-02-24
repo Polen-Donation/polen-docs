@@ -11,13 +11,13 @@ Para mais detalhes sobre os dados de entrada e saída consulte a [documentação
 
 Traz os detalhes de uma doações específica a partir de seu Id.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `storeId`: (obrigatório) identificador da loja - `string`.
     - `polenTransactionId`: (opcional) Id da transacao do Polen - `string`.
     - `orderId`: (opcional) id para identificar esta transação- `string`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - transactionId: `string`.
         - storeId: `string`.
         - orderId: `string`.
@@ -30,20 +30,20 @@ Traz os detalhes de uma doações específica a partir de seu Id.
         - status: `string`.
         - tags: `[]`.
         - createAt: `string`.
-    - `code`: status da requisição.
-```ruby
+    - `status_code`: status da requisição.
+```python
 params = {
-  storeId: "id"
+  'storeId': "id"
 }
 
 notify_donation = polen.get_notify_donation(params)
-puts notify_donation.body
+print(notify_donation.content)
 ```
 
 ## Get Notify Donation List
 Traz os detalhes de uma doação específica a partir do seu id.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `page`: (opcional) número de uma página especifica - `number`.
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
     - `storeId`: (obrigatório) identificador da loja - `string`.
@@ -53,33 +53,33 @@ Traz os detalhes de uma doação específica a partir do seu id.
     - `toDate`: (opcional) data final para fazer uma busca dentro de um espaço de tempo específico - `string`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - results: `array`.
         - pageNumber: `number`.
         - nextPage: `string`.
-    - `code`: status da requisição.
-```ruby
+    - `status_code`: status da requisição.
+```python
 params = {
-  storeId: "id"
+  'storeId': "id"
 }
 
 list = polen.get_notify_donation_list(params)
-puts list.body
+print(list.content)
 ```
 
 ## Update Notify Donation
 Neste método atualizamos o status da doação.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `storeId`: (obrigatório) identificador da loja - `string`.
 
-- Recebe o argumento `payload` que é um hash com os campos:
+- Recebe o argumento `body` que é um dicionário com os campos:
     - `polenTransactionId`: (opcional) id da transição do Polen - `string`.
     - `orderId`: (opcional) id da passado na criação da doação - `string`.
     - `status`: (obrigatório) status da doação - `number`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - transactionId: `string`.
         - storeId: `string`.
         - orderId: `string`.
@@ -92,30 +92,30 @@ Neste método atualizamos o status da doação.
         - status: `string`.
         - tags: `[]`.
         - createAt: `string`.
-    - `code`: status da requisição.
-```ruby
+    - `status_code`: status da requisição.
+```python
 params = {
-  storeId: "id"
+  'storeId': "id"
 }
 
-payload = {
-  polenTransactionId: "id",
-  orderId: "id",
-  status: 0
+body = {
+  'polenTransactionId': "id",
+  'orderId': "id",
+  'status': 0
 }
 
-update = polen.update_notify_donation(params, payload)
-puts update.body
+update = polen.update_notify_donation(params, body)
+print(update.content)
 ```
 
 ## Create Notify Donation
 Adiciona uma nova doação feita na loja.
 
-- Recebe o argumento `params` que é um hash com os campos:
+- Recebe o argumento `params` que é um dicionário com os campos:
     - `storeId`: (obrigatório) identificador da loja - `string`.
     - `companyId`: (obrigatório)  identificador da empresa.
 
-- Recebe o argumento `payload` que é um hash com os campos:
+- Recebe o argumento `body` que é um dicionário com os campos:
     - `orderId`: (obrigatório) id que você utilizará para identificar esta transação - `string`.
     - `donation`: (obrigatório) valor da doação - `number`.
     - `userId`: (opcional) Id de identificação do usuario - `string`.
@@ -137,7 +137,7 @@ Adiciona uma nova doação feita na loja.
     - `country`: (opcional) país - `string`.
 
 - Retorna um objeto com os métodos:
-    - `body`: conteúdo da resposta.
+    - `content`: conteúdo da resposta.
         - transactionId: `string`.
         - storeId: `string`.
         - storeUrl: `string`.
@@ -154,39 +154,39 @@ Adiciona uma nova doação feita na loja.
         - status: `string`.
         - tags: `[]`.
         - createAt: `string`.
-    - `code`: status da requisição.
-```ruby
+    - `status_code`: status da requisição.
+```python
 params = {
   storeId: "id"
 }
 
-payload = {
-    orderId: "", 
-    donation: -100000000, 
-    userDonation: -100000000, 
-    userId: "", 
-    tags: [""], 
-    storeName: "", 
-    storeUrl: "", 
-    currency: "", 
-    purchase: -100000000, 
-    ngoId: "", 
-    userEmail: "", 
-    userPhone: "", 
-    userDocument: "", 
-    userGender: "", 
-    userBirthDate: "", 
-    userName: "", 
-    city: "", 
-    state: "", 
-    country: "", 
-    paymentMethod: "", 
-    notes: "", 
-    status: 0, 
-    createAt: "2021-02-12T12:49:25.513Z", 
-    test: false
+body = {
+    'orderId': "", 
+    'donation': -100000000, 
+    'userDonation': -100000000, 
+    'userId': "", 
+    'tags': [""], 
+    'storeName': "", 
+    'storeUrl': "", 
+    'currency': "", 
+    'purchase': -100000000, 
+    'ngoId': "", 
+    'userEmail': "", 
+    'userPhone': "", 
+    'userDocument': "", 
+    'userGender': "", 
+    'userBirthDate': "", 
+    'userName': "", 
+    'city': "", 
+    'state': "", 
+    'country': "", 
+    'paymentMethod': "", 
+    'notes': "", 
+    'status': 0, 
+    'createAt': "2021-02-12T12:49:25.513Z", 
+    'test': false
 }
 
-create = polen.update_notify_donation(params, payload)
-puts create.body
+create = polen.update_notify_donation(params, body)
+print(create.content)
 ```
