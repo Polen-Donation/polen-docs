@@ -97,6 +97,6 @@ const body = {
   ]
 }
 
-const donation = polen.donationDirect(body)
+const donation = polen.createDirectDonation(body)
 console.log(donation.data)
 ```

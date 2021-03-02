@@ -99,9 +99,9 @@ const params = {
 }
 
 const body = {
-  'polenTransactionId': "id",
-  'orderId': "id",
-  'status': 0
+  polenTransactionId: "id",
+  orderId: "id",
+  status: 0
 }
 
 const update = polen.updateNotifyDonation(params, body)
@@ -187,6 +187,6 @@ const body = {
     test: false
 }
 
-const create = polen.updateNotifyDonation(params, body)
+const create = polen.createNotifyDonation(params, body)
 console.log(create.data)
 ```

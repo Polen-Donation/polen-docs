@@ -187,6 +187,6 @@ body = {
     'test': false
 }
 
-create = polen.update_notify_donation(params, body)
+create = polen.create_notify_donation(params, body)
 print(create.content)
 ```

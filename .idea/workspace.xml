@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ae288b0f-b92b-40b5-8406-6b555339fe18" name="Default Changelist" comment="ajustes de link na configuração" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1oog8neqIN074jLdjE5VpfA4Uq5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sdk/polen-node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/polen-dev/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/polen-dev/docs/node/methods" />
+      <recent name="$PROJECT_DIR$/polen-dev/docs/python/methods" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/polen-dev/package.json" />
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ae288b0f-b92b-40b5-8406-6b555339fe18" name="Default Changelist" comment="" />
+      <created>1613958201222</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1613958201222</updated>
+      <workItem from="1613958203032" duration="1225000" />
+      <workItem from="1613997740192" duration="3143000" />
+      <workItem from="1614001098883" duration="78000" />
+      <workItem from="1614002115010" duration="2929000" />
+      <workItem from="1614010638335" duration="4364000" />
+      <workItem from="1614027720314" duration="3497000" />
+      <workItem from="1614084770679" duration="15102000" />
+      <workItem from="1614171503511" duration="949000" />
+      <workItem from="1614176467852" duration="12719000" />
+      <workItem from="1614198194600" duration="2362000" />
+      <workItem from="1614256046731" duration="338000" />
+    </task>
+    <task id="LOCAL-00001" summary="adicionado a documentação de api">
+      <created>1613998316699</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1613998316699</updated>
+    </task>
+    <task id="LOCAL-00002" summary="revisão de textos">
+      <created>1614029791036</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1614029791036</updated>
+    </task>
+    <task id="LOCAL-00003" summary="revisão de textos">
+      <created>1614029809130</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614029809130</updated>
+    </task>
+    <task id="LOCAL-00004" summary="adicionado a documentação em python">
+      <created>1614171695308</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614171695308</updated>
+    </task>
+    <task id="LOCAL-00005" summary="adicionado a documentação em node">
+      <created>1614191070595</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1614191070595</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ajustes na home">
+      <created>1614196695645</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1614196695645</updated>
+    </task>
+    <task id="LOCAL-00007" summary="ajustes na documentção de introdução">
+      <created>1614199254062</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1614199254062</updated>
+    </task>
+    <task id="LOCAL-00008" summary="ajustes de link na configuração">
+      <created>1614199854082</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1614199854082</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adicionado a documentação de api" />
+    <MESSAGE value="revisão de textos" />
+    <MESSAGE value="adicionado a documentação em python" />
+    <MESSAGE value="adicionado a documentação em node" />
+    <MESSAGE value="ajustes na home" />
+    <MESSAGE value="ajustes na documentção de introdução" />
+    <MESSAGE value="ajustes de link na configuração" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustes de link na configuração" />
+  </component>
+</project>

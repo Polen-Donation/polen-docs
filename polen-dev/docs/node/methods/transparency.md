@@ -28,7 +28,7 @@ const params = {
   storeId: ""
 }
 
-const impact = polen.getImapactConsolidated(params)
+const impact = polen.getConsolidatedImpact(params)
 console.log(impact.data)
 ```
 

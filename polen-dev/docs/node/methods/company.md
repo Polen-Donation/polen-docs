@@ -76,7 +76,7 @@ const params = {
   companyId: "id",
 }
 
-const stores = polen.get_company_stores(params)
+const stores = polen.getCompanyStores(params)
 console.log(stores.data)
 ```
 
@@ -117,7 +117,7 @@ const body = {
 }
 
 const update = polen.updateCompany(params, body)
-print(update.data)
+console.log(update.data)
 ```
 
 ## Create Company
@@ -151,5 +151,5 @@ const body = {
 }
 
 const create = polen.createCompany(body)
-print(create.data)
+console.log(create.data)
 ```

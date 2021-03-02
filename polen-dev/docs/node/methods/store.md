@@ -40,7 +40,7 @@ const params = {
 }
 
 const storeDetail = polen.getStoreDetails(params)
-print(storeDetail.data)
+console.log(storeDetail.data)
 ```
 
 ## Get Store List

@@ -29,5 +29,5 @@ const params = {
 }
 
 const list = polen.getFinanceBillingList(params)
-print(list.data)
+console.log(list.data)
 ```
