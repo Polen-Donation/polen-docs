@@ -42,8 +42,8 @@ const features = [
     ),
   },
   {
-    title: 'Comunidade',
-    imageUrl: '../static/img/discord.png',
+    title: 'Comunidade do Discord',
+    imageUrl: 'https://logodownload.org/wp-content/uploads/2017/11/discord-logo-3.png',
     description: (
       <>
         Acreditamos que juntos de centavos em centavos doados vamos causar um grande impacto no mundo. Da mesma maneira acreditamos no poder da comunidade. Nos ajude a melhorar nossa API e tire suas dúvidas no nosso canal do Discord: link (faz um botão pra esse link)
