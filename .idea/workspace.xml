@@ -2,126 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80475a5f-df6e-4578-85e5-f2120e7a05c7" name="Default Changelist" comment="organização da estrutura do projeto">
-      <change afterPath="$PROJECT_DIR$/.gitingnore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/2019-05-28-hola.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/2019-05-29-hello-world.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog/2019-05-30-welcome.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/autenticacao.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/cause.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/company.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/donation-direct.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/finance.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/notify-donation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/platform.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/store.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/transaction.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/transparency.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/methods/user.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/node/node-install.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/cause.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/company.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/donation-direct.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/finance.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/notify-donation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/platform.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/store.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/transaction.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/transparency.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/methods/user.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/python/python-install.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/cause.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/company.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/donation-direct.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/finance.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/notify-donation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/platform.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/store.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/transaction.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/transparency.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/methods/user.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ruby/ruby-install.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/suporte.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/widgets.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docusaurus.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/polen.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/redoc-plugin/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sidebars.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/css/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/api-reference.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/styles.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/.nojekyll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/discord.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/undraw_docusaurus_mountain.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/undraw_docusaurus_react.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/undraw_docusaurus_tree.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitingnore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitingnore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/blog/2019-05-28-hola.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/blog/2019-05-29-hello-world.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/blog/2019-05-30-welcome.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/autenticacao.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/cause.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/company.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/donation-direct.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/finance.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/notify-donation.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/platform.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/store.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/transaction.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/transparency.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/methods/user.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/node/node-install.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/cause.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/company.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/donation-direct.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/finance.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/notify-donation.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/platform.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/store.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/transaction.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/transparency.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/methods/user.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/python/python-install.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/cause.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/company.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/donation-direct.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/finance.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/notify-donation.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/platform.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/store.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/transaction.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/transparency.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/methods/user.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/ruby/ruby-install.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/suporte.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docs/widgets.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/docusaurus.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/polen.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/redoc-plugin/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/sidebars.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/src/css/custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/src/pages/api-reference.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/src/pages/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/src/pages/styles.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/static/.nojekyll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/static/img/discord.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/static/img/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/static/img/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/static/img/undraw_docusaurus_mountain.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/static/img/undraw_docusaurus_react.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/static/img/undraw_docusaurus_tree.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polen-dev/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +25,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -152,8 +36,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619181314333</updated>
-      <workItem from="1619181316019" duration="712000" />
+      <workItem from="1619181316019" duration="1418000" />
     </task>
+    <task id="LOCAL-00001" summary="organização da estrutura do projeto">
+      <created>1619182107620</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619182107620</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

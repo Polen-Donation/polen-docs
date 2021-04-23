@@ -7,7 +7,7 @@ module.exports = {
   title: 'Polen API',
   tagline: 'A sua API para doações',
   url: 'https://Polen-Donation.github.io',
-  baseUrl: '/',
+  baseUrl: '/polen-docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
