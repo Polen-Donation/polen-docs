@@ -6,8 +6,8 @@ const spec = fs.readFileSync('./polen.yaml', 'utf-8');
 module.exports = {
   title: 'Polen API',
   tagline: 'A sua API para doações',
-  url: 'https://Polen-Donation.github.io',
-  baseUrl: '/polen-docs/',
+  url: 'https://polen-donation.github.io',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
