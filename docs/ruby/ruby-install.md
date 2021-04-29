@@ -14,10 +14,10 @@ Você pode encontrar essa e várias outras bibliotecas em nossos [repositórios]
 A maneira mais fácil de instalar a PolenAPI é usar a ferramenta de linha de comando. Você pode executar este comando em qualquer lugar em um novo repositório ou dentro de um repositório existente.
 
 ```shell
-gem install polen-api
+gem install polen_charity_donation_api
 ```
 
-Ou adicionando o `polen-sdk-ruby, ~> 0.1.0` ao seu arquivo Gemfile.
+Ou adicionando o `gem 'polen_charity_donation_api', '~> 1.0'` ao seu arquivo Gemfile.
 
 :::caution Atenção
 Não é recomendado a instalação de gems como super usuário.
@@ -28,7 +28,7 @@ Após a instalação você pode fazer a importação para o seu projeto através
 
 
 ```ruby
-require 'polen-sdk-ruby'
+require 'polen_charity_donation_api'
 
-polen = PolenSdkRuby::PolenAPI.new("token")
+polen = PolenCharityDonation.new("token");
 ```

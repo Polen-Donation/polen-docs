@@ -18,16 +18,15 @@ Este método retorna todas as suas faturas de pagamento.
     - `endDate`: (opcinal) data final - `string`.
 
 - Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - results: `array`.
-        - pageNumber: `number`.
-        - nextPage: `string`.
-    - `status`: status da requisição.
+    - results: `array`.
+    - pageNumber: `number`.
+    - nextPage: `string`.
+    
 ```javascript
 const params = {
   storeId: "id"
 }
 
-const list = polen.getFinanceBillingList(params)
-console.log(list.data)
+const list = await polen.getBilling(params);
+console.log(list);
 ```

@@ -15,7 +15,7 @@ A maneira mais fácil de instalar a PolenAPI é usar a ferramenta de linha de co
 Você pode encontrar essa e várias outras bibliotecas em nossos [repositórios](/).
 
 ```shell
-python -m pip install polen-api.whl
+pip install polen-donation-api
 ```
 
 :::caution Atenção
@@ -27,7 +27,7 @@ Após a instalação você pode fazer a importação para o seu projeto através
 
 
 ```python
-import polen_sdk
+from polen_donation_api import PolenDonationAPI
 
-polen = PolenAPI("token")
+polen = PolenDonationAPI("token")
 ```

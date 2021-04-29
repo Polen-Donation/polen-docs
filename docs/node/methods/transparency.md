@@ -13,23 +13,21 @@ Este método retorna um consolidado do total já doado por sua empresa e o impac
 - Recebe o argumento `params` que é um objeto com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - storeId: `string`
-        - name: `string`
-        - logo: `string`
-        - ngos: `array`
-        - totalRaised: `number`
-        - totalPurchases: `number`
-    - `status`: status da requisição.
+- Retorna um objeto:
+     - storeId: `string`
+     - name: `string`
+     - logo: `string`
+     - ngos: `array`
+     - totalRaised: `number`
+     - totalPurchases: `number`
 
 ```javascript
 const params = {
   storeId: ""
 }
 
-const impact = polen.getConsolidatedImpact(params)
-console.log(impact.data)
+const impact = await polen.getConsolidatedImpact(params);
+console.log(impact);
 ```
 
 ## Get Content Detail
@@ -39,19 +37,17 @@ Este método retorna os detalhes de um conteúdo específico postado pela instit
     - `storeId`: (obrigatório) id da loja - `string`.
     - `identifier`: (obrigatório) id do conteúdo - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - id: `string`.
-        - causeId: `string`.
-        - title: `string`.
-        - description: `string`.
-        - contents: `array`.
-        - approved: `boolean`.
-        - type: `number`.
-        - date: `string`.
-        - dateOfImpact: `string`.
-        - dateApproved: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - id: `string`.
+    - causeId: `string`.
+    - title: `string`.
+    - description: `string`.
+    - contents: `array`.
+    - approved: `boolean`.
+    - type: `number`.
+    - date: `string`.
+    - dateOfImpact: `string`.
+    - dateApproved: `string`.
 
 ```javascript
 const params = {
@@ -59,8 +55,8 @@ const params = {
   indentifier: ""
 }
 
-const detail = polen.getContentDetail(params)
-console.log(detail.data)
+const detail = await polen.getContentDetail(params);
+console.log(detail);
 ```
 
 ## Get Transparency Receipts
@@ -75,11 +71,9 @@ Este método retorna todos os recibos de doação assinados pelas instituições
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
 
 - Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - results: `array`.
-        - pageNumber: `number`.
-        - nextPage: `string`.
-    - `status`: status da requisição.
+    - results: `array`.
+    - pageNumber: `number`.
+    - nextPage: `string`.
 
 ```javascript
 const params = {
@@ -87,8 +81,8 @@ const params = {
   causeId: ""
 }
 
-const receipts = polen.getTransparencyReceipts(params)
-console.log(receipts.data)
+const receipts = await polen.getReceipts(params);
+console.log(receipts);
 ```
 
 ## Get Content List
@@ -103,11 +97,9 @@ Este método todos os conteúdos postados pelas causas e instituições que sua 
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
 
 - Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - results: `array`.
-        - pageNumber: `number`.
-        - nextPage: `string`.
-    - `status`: status da requisição.
+    - results: `array`.
+    - pageNumber: `number`.
+    - nextPage: `string`.
 
 ```javascript
 const params = {
@@ -115,6 +107,6 @@ const params = {
   causeId: ""
 }
 
-const list = polen.getContentList(params)
-console.log(list.data)
+const list = await polen.getContentList(params);
+console.log(list);
 ```

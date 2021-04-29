@@ -15,17 +15,12 @@ Este método retorna todas as plataformas parceiras que o Polen já possui integ
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
 
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - results: `array`.
-        - pageNumber: `number`.
-        - nextPage: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - results: `array`.
+    - pageNumber: `number`.
+    - nextPage: `string`.
+  
 ```javascript
-const params = {
-  storeId: "id"
-}
-
-const list = polen.getPlatformList(params)
-console.log(list.data)
+const list = await polen.getPlatform();
+console.log(list);
 ```

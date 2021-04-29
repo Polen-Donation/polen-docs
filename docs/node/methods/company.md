@@ -13,23 +13,21 @@ Este método retorna os detalhes de uma empresa específica.
 - Recebe o argumento `params` que é um dicionário com os campos:
     - `companyId`: (obrigatório) id da Empresa - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-      - id: `string`.
-      - document: `string`.
-      - name: `string`.
-      - logo: `string`.
-      - url: `string`.
-      - segment: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+  - id: `string`.
+  - document: `string`.
+  - name: `string`.
+  - logo: `string`.
+  - url: `string`.
+  - segment: `string`.
 
 ```javascript
 const params = {
   companyId: "id",
 }
 
-const companyDetail = polen.getCompanyDetails(params)
-console.log(companyDetail.data)
+const companyDetail = await polen.getCompanyDetails(params);
+console.log(companyDetail);
 ```
 
 ## Get Company List
@@ -47,37 +45,30 @@ Este método retorna todas as empresas da sua conta.
     - `status`: status da requisição.
 
 ```javascript
-const params = {
-  page: 0,
-  pageSize: 20
-}
-
-const list = polen.getCompanyList(params)
-console.log(list.data)
+const list = await polen.getCompanyList();
+console.log(list);
 ```
 
 ## Get Company Store
-Este método retorna todas as empresas da sua conta.
+Este método retorna todas as lojas de uma empresa.
 
 - Recebe o argumento `params` que é um objeto com os campos:
     - `companyId`: (obrigatório) id da empresa - `string`.
     - `page`: (opcional) número de uma página especifica - `number`.
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - results: `array`.
-        - pageNumber: `number`.
-        - nextPage: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - results: `array`.
+    - pageNumber: `number`.
+    - nextPage: `string`.
 
 ```javascript
 const params = {
   companyId: "id",
 }
 
-const stores = polen.getCompanyStores(params)
-console.log(stores.data)
+const stores = await polen.getCompanyStores(params);
+console.log(stores);
 ```
 
 ## Update Company
@@ -93,15 +84,14 @@ Este método atualiza dados de uma empresa.
     - `url`: (opcional) url da página de impacto da empresa - `string`.
     - `segment`: (opcional) segmento da empresa - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - id: `string`.
-        - document: `string`.
-        - name: `string`.
-        - logo: `string`.
-        - url: `string`.
-        - segment: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - id: `string`.
+    - document: `string`.
+    - name: `string`.
+    - logo: `string`.
+    - url: `string`.
+    - segment: `string`.
+    
 
 ```javascript
 const params = {
@@ -116,8 +106,8 @@ const body = {
   segment: ""
 }
 
-const update = polen.updateCompany(params, body)
-console.log(update.data)
+const update = await polen.updateCompany(params, body);
+console.log(update);
 ```
 
 ## Create Company
@@ -130,15 +120,13 @@ Este método cria uma empresa.
     - `url`: url da página de impacto da empresa - `string`.
     - `segment`: segmento da empresa - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - id: `string`.
-        - document: `string`.
-        - name: `string`.
-        - logo: `string`.
-        - url: `string`.
-        - segment: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - id: `string`.
+    - document: `string`.
+    - name: `string`.
+    - logo: `string`.
+    - url: `string`.
+    - segment: `string`.
 
 ```javascript
 
@@ -150,6 +138,6 @@ const body = {
   segment: ""
 }
 
-const create = polen.createCompany(body)
-console.log(create.data)
+const create = await polen.createCompany(body);
+console.log(create);
 ```

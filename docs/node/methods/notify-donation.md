@@ -16,28 +16,27 @@ Traz os detalhes de uma doações específica a partir de seu Id.
     - `polenTransactionId`: (opcional) Id da transacao do Polen - `string`.
     - `orderId`: (opcional) id para identificar esta transação- `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - transactionId: `string`.
-        - storeId: `string`.
-        - orderId: `string`.
-        - donation: `number`.
-        - userDonation: `number`.
-        - purchase: `number`.
-        - ngoId: `string`.
-        - polenUserId: `string`.
-        - userEmail: `string`.
-        - status: `string`.
-        - tags: `[]`.
-        - createAt: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    
+    - transactionId: `string`.
+    - storeId: `string`.
+    - orderId: `string`.
+    - donation: `number`.
+    - userDonation: `number`.
+    - purchase: `number`.
+    - ngoId: `string`.
+    - polenUserId: `string`.
+    - userEmail: `string`.
+    - status: `string`.
+    - tags: `[]`.
+    - createAt: `string`.
 ```javascript
 const params = {
   storeId: "id"
 }
 
-const notifyDonation = polen.getNotifyDonation(params)
-console.log(notifyDonation.data)
+const notifyDonation = await polen.getNotifyDonationDetails(params);
+console.log(notifyDonation);
 ```
 
 ## Get Notify Donation List
@@ -52,19 +51,19 @@ Traz os detalhes de uma doação específica a partir do seu id.
     - `fromDate`: (opcional) data inicial para fazer uma busca dentro de um espaço de tempo específico - `string`.
     - `toDate`: (opcional) data final para fazer uma busca dentro de um espaço de tempo específico - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - results: `array`.
-        - pageNumber: `number`.
-        - nextPage: `string`.
-    - `status: status da requisição.
+- Retorna um objeto:
+    
+    - results: `array`.
+    - pageNumber: `number`.
+    - nextPage: `string`.
+
 ```javascript
 const params = {
   storeId: "id"
 }
 
-const list = polen.getNotifyDonationList(params)
-console.log(list.data)
+const list = await polen.getNotifyDonationList(params);
+console.log(list);
 ```
 
 ## Update Notify Donation
@@ -78,21 +77,21 @@ Neste método atualizamos o status da doação.
     - `orderId`: (opcional) id da passado na criação da doação - `string`.
     - `status`: (obrigatório) status da doação - `number`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - transactionId: `string`.
-        - storeId: `string`.
-        - orderId: `string`.
-        - donation: `number`.
-        - userDonation: `number`.
-        - purchase: `number`.
-        - ngoId: `string`.
-        - polenUserId: `string`.
-        - userEmail: `string`.
-        - status: `string`.
-        - tags: `[]`.
-        - createAt: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    
+  - transactionId: `string`.
+      - storeId: `string`.
+      - orderId: `string`.
+      - donation: `number`.
+      - userDonation: `number`.
+      - purchase: `number`.
+      - ngoId: `string`.
+      - polenUserId: `string`.
+      - userEmail: `string`.
+      - status: `string`.
+      - tags: `[]`.
+      - createAt: `string`.
+    
 ```javascript
 const params = {
   storeId: "id"
@@ -104,8 +103,8 @@ const body = {
   status: 0
 }
 
-const update = polen.updateNotifyDonation(params, body)
-console.log(update.data)
+const update = await polen.updateNotifyDonation(params, body);
+console.log(update);
 ```
 
 ## Create Notify Donation
@@ -136,25 +135,25 @@ Adiciona uma nova doação feita na loja.
     - `state`: (opcional) estado - `string`.
     - `country`: (opcional) país - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - transactionId: `string`.
-        - storeId: `string`.
-        - storeUrl: `string`.
-        - orderId: `string`.
-        - donation: `number`.
-        - userDonation: `number`.
-        - purchase: `number`.
-        - ngoId: `string`.
-        - ngoName: `string`.
-        - polenUserId: `string`.
-        - userId: `string`.
-        - polenUserId: `string`.
-        - userEmail: `string`.
-        - status: `string`.
-        - tags: `[]`.
-        - createAt: `string`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+  
+    - transactionId: `string`.
+    - storeId: `string`.
+    - storeUrl: `string`.
+    - orderId: `string`.
+    - donation: `number`.
+    - userDonation: `number`.
+    - purchase: `number`.
+    - ngoId: `string`.
+    - ngoName: `string`.
+    - polenUserId: `string`.
+    - userId: `string`.
+    - polenUserId: `string`.
+    - userEmail: `string`.
+    - status: `string`.
+    - tags: `[]`.
+    - createAt: `string`.
+  
 ```javascript
 const params = {
   storeId: "id"
@@ -187,6 +186,6 @@ const body = {
     test: false
 }
 
-const create = polen.createNotifyDonation(params, body)
-console.log(create.data)
+const create = await polen.createNotifyDonation(params, body);
+console.log(create);
 ```

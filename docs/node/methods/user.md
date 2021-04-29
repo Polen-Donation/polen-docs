@@ -15,14 +15,12 @@ Este método retorna detalhes de um usuário específico.
     - `userId`: (obrigatório) id da loja - `string`.
 
 - Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - identifier: `string`.
-        - email: `string`.
-        - name: `string`.
-        - phone: `string`.
-        - document: `string`.
-        - causesList: `array`.
-    - `status`: status da requisição.
+    - identifier: `string`.
+    - email: `string`.
+    - name: `string`.
+    - phone: `string`.
+    - document: `string`.
+    - causesList: `array`.
 
 ```javascript
 const params = {
@@ -30,32 +28,33 @@ const params = {
   userId: "",
 }
 
-const impact = polen.getImapactConsolidated(params)
-console.log(impact.data)
+const details = await polen.getUserDetails(params);
+console.log(details);
 ```
 
-## Delete User
-Este método deleta um usuário específico.
+## Get User Impact
+Este método retorna o impacto causado pelo usuário.
 
 - Recebe o argumento `params` que é um objeto com os campos:
     - `storeId`: (obrigatório) id da loja - `string`.
-    - `userId`: (obrigatório) id da loja - `string`.
-
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - success: `boolean`.
-        - errorCode: `number`.
-        - error: `string`.
-    - `status`: status da requisição.
+    - `userId`: (obrigatório) id do usuário - `string`.
+    
+ - Retorna um objeto:
+    - userId: `string`.
+    - email: `string`.
+    - name: `string`.
+    - phone: `string`.
+    - document: `string`.
+    - causeList: `array`.
 
 ```javascript
-params = {
+const params = {
   storeId: "",
-  userId: "",
+  userId: ""
 }
 
-const deleteUser = polen.delete_user(params)
-console.log(deleteUser.data)
+const imapact = await polen.getUserImpact(params);
+console.log(imapact);
 ```
 
 ## Get User List
@@ -66,20 +65,18 @@ Este método retorna uma lista de usuários.
     - `pageSize`: (opcional) quantidade de items por página (por padrão tem o valor 20) - `number`.
     - `storeId`: (obrigatório) id da loja - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - results: `array`.
-        - pageNumber: `number`.
-        - nextPage: `string`.   .
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - results: `array`.
+    - pageNumber: `number`.
+    - nextPage: `string`.  
 
 ```javascript
 const params = {
   storeId: "",
 }
 
-const list = polen.getUserList(params)
-console.log(list.data)
+const list = await polen.getUserList(params);
+console.log(list);
 ```
 
 ## Update User
@@ -103,15 +100,13 @@ Este método atualiza dados de um usuário.
     - `optIn`: (opcional) verifica se deve enviar um email ao usuário - `boolean`.
     - `createAt`: (opcional) data da requisição - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - identifier: `string`.
-        - email: `string`.
-        - name: `string`.
-        - phone: `string`.
-        - document: `string`.
-        - causesList: `array`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - identifier: `string`.
+    - email: `string`.
+    - name: `string`.
+    - phone: `string`.
+    - document: `string`.
+    - causesList: `array`.
 
 ```javascript
 const params = {
@@ -134,8 +129,8 @@ const body = {
   createAt: "2021-02-12T12:49:25.636Z"
 }
 
-const update = polen.updateUser(payload, body)
-console.log(update.data)
+const update = polen.updateUser(payload, body);
+console.log(update);
 ```
 
 ## Create User
@@ -160,15 +155,13 @@ Este método adiciona um novo usuário.
     - `optIn`: (opcional) verifica se deve enviar um email ao usuário - `boolean`.
     - `createAt`: (opcional) data da requisição - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - identifier: `string`.
-        - email: `string`.
-        - name: `string`.
-        - phone: `string`.
-        - document: `string`.
-        - causesList: `array`.
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - identifier: `string`.
+    - email: `string`.
+    - name: `string`.
+    - phone: `string`.
+    - document: `string`.
+    - causesList: `array`.
 
 ```javascript
 const params = {
@@ -207,26 +200,24 @@ Este método associa/desassocia causas a um usuário.
     - `addCauseList`: (opcional) causas que deseja adicionar - `array`.
     - `disableCausesList`: (obrigatório) causas que deseja remover - `array`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - apiKey: `string`.
-        - apiToken: `string`.
-        - storeId: `string`.
-        - storeUrl: `string`.
-        - childStoreId: `array`.
-        - email: `string`.
-        - name: `string`.
-        - phone: `string`.
-        - document: `string`.
-        - causesList: `array`.
-        - logo: `string`.
-        - domain: `string`.
-        - active: `boolean`
-        - test: `boolean`
-        - totalDonated: `number`
-        - totalBackers: `number`
-        - errorCode: `number`
-    - `status`: status da requisição.
+- Retorna um objeto:
+    - apiKey: `string`.
+    - apiToken: `string`.
+    - storeId: `string`.
+    - storeUrl: `string`.
+    - childStoreId: `array`.
+    - email: `string`.
+    - name: `string`.
+    - phone: `string`.
+    - document: `string`.
+    - causesList: `array`.
+    - logo: `string`.
+    - domain: `string`.
+    - active: `boolean`
+    - test: `boolean`
+    - totalDonated: `number`
+    - totalBackers: `number`
+    - errorCode: `number`
 
 ```javascript
 const params = {
@@ -243,6 +234,6 @@ const body = {
   ]
 }
 
-const add = polen.add_user_cause(payload, body)
-console.log(add.data)
+const add = await updateUserCause(params, body);
+console.log(add)
 ```

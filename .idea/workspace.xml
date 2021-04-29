@@ -2,7 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80475a5f-df6e-4578-85e5-f2120e7a05c7" name="Default Changelist" comment="organização da estrutura do projeto">
+      <change beforePath="$PROJECT_DIR$/.gitingnore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/cause.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/cause.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/company.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/company.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/donation-direct.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/donation-direct.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/finance.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/finance.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/notify-donation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/notify-donation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/platform.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/platform.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/store.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/store.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/transaction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/transaction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/transparency.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/transparency.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/methods/user.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/user.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/python/python-install.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/python/python-install.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ruby/ruby-install.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ruby/ruby-install.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/suporte.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/suporte.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +42,23 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -34,7 +67,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619181314333</updated>
-      <workItem from="1619181316019" duration="2496000" />
+      <workItem from="1619181316019" duration="6338000" />
+      <workItem from="1619439724924" duration="187000" />
+      <workItem from="1619699220455" duration="7291000" />
     </task>
     <task id="LOCAL-00001" summary="organização da estrutura do projeto">
       <created>1619182107620</created>
@@ -50,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619182876533</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="organização da estrutura do projeto">
+      <created>1619184142018</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619184142018</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -66,6 +108,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="organização da estrutura do projeto" />

@@ -15,25 +15,23 @@ Este método deve ser utilizado para atualizações posteriores à compra.
     - `orderId`: (obrigatório) id da doação - `string`.
     - `status`: (obrigatório) status da doação - `number`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
-        - transactionId: `string`.
-        - storeId: `string`.
-        - storeUrl: `string`.
-        - orderId: `string`.
-        - donation: `number`.
-        - userDonation: `number`.
-        - purchase number
-        - ngoId string
-        - ngoName string
-        - userId string
-        - polenUserId string
-        - userEmail string
-        - status string
-        - tags array
-        - createAt string
-    - `status`: status da requisição.
-
+- Retorna um objeto:
+    - transactionId: `string`.
+    - storeId: `string`.
+    - storeUrl: `string`.
+    - orderId: `string`.
+    - donation: `number`.
+    - userDonation: `number`.
+    - purchase number
+    - ngoId string
+    - ngoName string
+    - userId string
+    - polenUserId string
+    - userEmail string
+    - status string
+    - tags array
+    - createAt string
+    
 ```javascript
 const params = {
   storeId: "",
@@ -42,6 +40,6 @@ const params = {
 }
 
 
-const update = polen.updateStatus(params)
-console.log(update.data)
+const update = await polen.attTransaction(params);
+console.log(update);
 ```

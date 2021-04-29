@@ -26,8 +26,7 @@ Este método cria uma doação direta.
     - `matchingDonation`: o valor que a marca doará - `number`.
     - `notes`: notas de observação - `string`.
 
-- Retorna um objeto com os métodos:
-    - `data`: conteúdo da resposta.
+- Retorna um objeto:
       - transactionId: `string`.
       - storeId: `string`.
       - storeUrl: `string`.
@@ -43,7 +42,6 @@ Este método cria uma doação direta.
       - status: `string`.
       - tags: `array`.
       - createAt: `string`.
-    - `status`: status da requisição.
 ```javascript
 const body = {
   storeId: "",
@@ -97,6 +95,6 @@ const body = {
   ]
 }
 
-const donation = polen.createDirectDonation(body)
-console.log(donation.data)
+const donation = await polen.createDirectDonation(body);
+console.log(donation);
 ```
