@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80475a5f-df6e-4578-85e5-f2120e7a05c7" name="Default Changelist" comment="organização da estrutura do projeto">
-      <change beforePath="$PROJECT_DIR$/.gitingnore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="80475a5f-df6e-4578-85e5-f2120e7a05c7" name="Default Changelist" comment="ajustes na documentação">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/cause.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/cause.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/company.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/company.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/donation-direct.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/donation-direct.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/finance.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/finance.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/notify-donation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/notify-donation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/platform.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/platform.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/store.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/store.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/transaction.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/transaction.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/transparency.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/transparency.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/node/methods/user.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/methods/user.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/python/python-install.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/python/python-install.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/ruby/ruby-install.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ruby/ruby-install.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/suporte.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/suporte.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/node/node-install.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/node/node-install.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +54,7 @@
       <updated>1619181314333</updated>
       <workItem from="1619181316019" duration="6338000" />
       <workItem from="1619439724924" duration="187000" />
-      <workItem from="1619699220455" duration="7291000" />
+      <workItem from="1619699220455" duration="8172000" />
     </task>
     <task id="LOCAL-00001" summary="organização da estrutura do projeto">
       <created>1619182107620</created>
@@ -92,7 +77,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619184142018</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ajustes na documentação">
+      <created>1619706866978</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619706866978</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +104,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="organização da estrutura do projeto" />
-    <option name="LAST_COMMIT_MESSAGE" value="organização da estrutura do projeto" />
+    <MESSAGE value="ajustes na documentação" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustes na documentação" />
   </component>
 </project>

@@ -15,7 +15,7 @@ A instalação da PolenAPI é feita de forma simples conforme os passos descrito
 A maneira mais fácil de instalar a PolenAPI é usar a ferramenta de linha de comando. Você pode executar este comando em qualquer lugar em um novo repositório ou dentro de um repositório existente.
 Você pode encontrar essa e várias outras bibliotecas em nossos [repositórios](/).
 ```shell
-npm install linkDoGit
+npm install polencharitydonationapi
 ```
 
 ## Como usar
@@ -23,7 +23,7 @@ Após a instalação você pode fazer a importação para o seu projeto através
 
 
 ```javascript
-import { polenAPI } from "polenSdk";
+import PolenCharityDonationAPI from "PolenCharityDonationAPI";
 
-const polen = polenAPI("token");
+const polen = PolenCharityDonationAPI("token");
 ```
