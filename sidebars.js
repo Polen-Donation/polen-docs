@@ -42,6 +42,20 @@ module.exports = {
         "node/methods/transparency",
         "node/methods/user"
       ]
-    }]
+    }],
+  CSharp: ["csharp/csharp-install", {
+    "Métodos":[
+      "csharp/methods/cause",
+      "csharp/methods/company",
+      "csharp/methods/donation-direct",
+      "csharp/methods/finance",
+      "csharp/methods/notify-donation",
+      "csharp/methods/platform",
+      "csharp/methods/store",
+      "csharp/methods/transaction",
+      "csharp/methods/transparency",
+      "csharp/methods/user"
+    ]
+  }]
   },
 };
